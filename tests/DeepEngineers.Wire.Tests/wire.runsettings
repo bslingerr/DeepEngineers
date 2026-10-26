@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- No MSTest deployment folders; tests run from the build output (Fixtures/ is copied there). -->
+<RunSettings>
+  <MSTest>
+    <DeploymentEnabled>false</DeploymentEnabled>
+  </MSTest>
+</RunSettings>

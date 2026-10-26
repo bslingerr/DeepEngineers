@@ -1,0 +1,36 @@
+# DeepEngineers install manifest: every file and entry we create or change in a game or loader folder
+# (CONTRACT 7 Uninstall, ROADMAP 5.1/5.5). Written by src/DeepEngineers.Launcher/launcher.py (deploy | manifest);
+# docs/install/UNINSTALL.md is drafted from it. The loaders themselves are in subnautica-bepinex-files.txt.
+# Root tokens: <Subnautica> = C:\Program Files (x86)\Steam\steamapps\common\Subnautica
+# wiped by a Pulsar self-update)
+# ps1)
+# Columns (tab-separated): kind, path, bytes, sha256, source (build output), state, recorded (UTC).
+# kind: dir = folder we create; file = file we copy; entry = a line we add to a loader file;
+# created-by-loader = a file the loader writes for our plugin.
+# recorded 2026-10-18T13:34:11Z by `launcher.py manifest`
+dir	<Subnautica>\BepInEx\plugins\DeepEngineers\	-	-	-	present	2026-10-18T13:34:11Z
+dir	<Pulsar>\Legacy\Local\DeepEngineers.SE\	-	-	-	present	2026-10-18T13:34:11Z
+file	<Pulsar>\Legacy\Local\DeepEngineers.SE\plugin.dll	1183744	064595a3ac8d3b94652bb77d46ddbe4667faca1662c4941df9415a83749c7b94	<repo>\src\DeepEngineers.SE\bin\Release\net48\plugin.dll	deployed (= build)	2026-10-18T13:34:11Z
+file	<Pulsar>\Legacy\Local\DeepEngineers.SE\DeepEngineers.Wire.dll	411136	e4ba9061e7f8da80d71c5eb746c2a9c8470b5dc97516e08e7816513bf105e59c	<repo>\src\DeepEngineers.SE\bin\Release\net48\DeepEngineers.Wire.dll	deployed (= build)	2026-10-18T13:34:11Z
+file	<Pulsar>\Legacy\Local\DeepEngineers.SE\plugin.pdb	341664	aef3a72ac08b12635d9322d36c5f66ce050432bc4a14889fc980431af78b6667	<repo>\src\DeepEngineers.SE\bin\Release\net48\plugin.pdb	deployed (= build)	2026-10-18T13:34:11Z
+file	<Subnautica>\BepInEx\plugins\DeepEngineers\DeepEngineers.SN.dll	1059840	4e46b1f4d158063adf1c08f1775d4b7c040b754ce396b9df065d7caaf8788e4a	<repo>\src\DeepEngineers.SN\bin\Release\net472\DeepEngineers.SN.dll	deployed (= build)	2026-10-18T13:34:11Z
+file	<Subnautica>\BepInEx\plugins\DeepEngineers\DeepEngineers.Wire.dll	411136	e4ba9061e7f8da80d71c5eb746c2a9c8470b5dc97516e08e7816513bf105e59c	<repo>\src\DeepEngineers.SN\bin\Release\net472\DeepEngineers.Wire.dll	deployed (= build)	2026-10-18T13:34:11Z
+file	<Subnautica>\BepInEx\plugins\DeepEngineers\DeepEngineers.SN.pdb	311236	ee0ce9d457754f133ebddb877df605b3b715753d691c5d1a1a0cd53477f55edb	<repo>\src\DeepEngineers.SN\bin\Release\net472\DeepEngineers.SN.pdb	deployed (= build)	2026-10-18T13:34:11Z
+entry	<Pulsar>\Legacy\Profiles\Current.xml	-	-	<Local><string>DeepEngineers.SE.dll</string></Local> (written by build.ps1)	present	2026-10-18T13:34:11Z
+created-by-loader	<Subnautica>\BepInEx\config\deepengineers.sn.cfg	-	-	BepInEx config of deepengineers.sn	absent (not yet)	2026-10-18T13:34:11Z
+dir	<SEAppData>\Mods\DeepEngineers.World\	-	-	-	present	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\metadata.mod	198	db50d263c908ce64a78a03101079f4d022913f0ae411cf6fd92a707e40a741e3	<repo>\src\DeepEngineers.WorldMod\metadata.mod	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetGeneratorDefinitions.sbc	8020	a20f0138fcfa309a3dfd7839bcfc7b125ed4c9b27453a08486dae45c847e25e7	<repo>\src\DeepEngineers.WorldMod\Data\PlanetGeneratorDefinitions.sbc	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\WaterConfig.xml	1390	154a239211461bd8bfd30ecf4bd964c9bb7916dd44c8bc9c9a0f842136b0ae29	<repo>\src\DeepEngineers.WorldMod\Data\WaterConfig.xml	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\back.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\back.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\back_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\back_mat.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\down.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\down.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\down_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\down_mat.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\front.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\front.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\front_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\front_mat.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\left.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\left.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\left_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\left_mat.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\right.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\right.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\right_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\right_mat.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\up.png	8209	7857fe8241567cb65544292ab8acd3446597191606b8f631c34af40b6b4d7a41	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\up.png	deployed (= source)	2026-10-18T13:34:11Z
+file	<SEAppData>\Mods\DeepEngineers.World\Data\PlanetDataFiles\DE_4546B\up_mat.png	19735	89ae171805b27ffe1088ba352eaf0c277031573f7ce3c1504fa98cc9d49a3355	<repo>\src\DeepEngineers.WorldMod\Data\PlanetDataFiles\DE_4546B\up_mat.png	deployed (= source)	2026-10-18T13:34:11Z

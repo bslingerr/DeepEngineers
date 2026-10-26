@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- World mod tests against Space Engineers' own definition serializer (S1 world mod).
+ The mod's Data/PlanetGeneratorDefinitions.sbc is read with MyObjectBuilderSerializerKeen.DeserializeXML, the
+ function SE uses to load definitions (it uses SE's pregenerated VRage.Game.XmlSerializers), and with that
+ serializer plus strict XmlDeserializationEvents, which report the names SE would silently ignore.
+ SE assemblies are referenced from the install (Private=false, never copied) and resolved at run time from
+ $(SEBin64) (Directory.Build.props). In DeepEngineers.sln (tests folder) since the S1 integration, so
+ `dotnet test DeepEngineers.sln` runs it. Alone: dotnet test tests/worldmod/DeepEngineers.WorldMod.Tests -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <AssemblyName>DeepEngineers.WorldMod.Tests</AssemblyName>
+    <RootNamespace>DeepEngineers.WorldMod.Tests</RootNamespace>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)..\..\DeepEngineers.Wire.Tests\wire.runsettings</RunSettingsFilePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.0" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+
+  <!-- Game assemblies: referenced from the install, never copied (ROADMAP section 5.3). -->
+  <ItemGroup>
+    <Reference Include="VRage"><HintPath>$(SEBin64)\VRage.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Game"><HintPath>$(SEBin64)\VRage.Game.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Library"><HintPath>$(SEBin64)\VRage.Library.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Math"><HintPath>$(SEBin64)\VRage.Math.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Render"><HintPath>$(SEBin64)\VRage.Render.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>DeepEngineers.SEBin64</_Parameter1>
+      <_Parameter2>$(SEBin64)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>DeepEngineers.WorldModDir</_Parameter1>
+      <_Parameter2>$(MSBuildThisFileDirectory)..\..\..\src\DeepEngineers.WorldMod</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>

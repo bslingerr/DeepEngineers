@@ -1,0 +1,506 @@
+region 0 1 0x0 0x1000 256 1
+region 1 2 0x1000 0x1000 128 1
+region 16 3 0x10000 0x2000 256 1
+region 32 4 0x20000 0x80000 96 1
+region 48 7 0x1000000 0x4000000 8 1
+region 64 7 0x600000 0x800000 8 1
+region 80 3 0x2000 0x1000 256 1
+region 96 3 0x3000 0x1000 64 1
+region 112 3 0x4000 0x1000 256 1
+region 128 6 0xb0000 0x20000 128 1
+region 144 4 0xa0000 0x4000 48 1
+region 160 5 0x5000 0x1000 256 1
+region 176 7 0x100000 0x40000 8 1
+region 177 7 0x140000 0x40000 8 1
+region 178 7 0x180000 0x40000 8 1
+region 179 7 0x1c0000 0x40000 8 1
+region 192 7 0x200000 0x400000 8 1
+ring 0 48 0x1000 0x1040
+ring 1 64 0x1080 0x10c0
+ring 2 128 0x1100 0x1140
+ring 3 192 0x1180 0x11c0
+ring 4 176 0x1200 0x1240
+ring 5 177 0x1280 0x12c0
+ring 6 178 0x1300 0x1340
+ring 7 179 0x1380 0x13c0
+table 0 header 0x0 1 256 SectionHeader
+table 0 regionTable 0x100 17 32 RegionEntry
+table 1 entries 0x0 8 128 RingControlEntry
+table 16 frame 0x0 1 256 SeFrame
+table 16 bones 0x100 160 48 SeBone
+table 32 header 0x0 1 64 SeEntitiesHeader
+table 32 entities 0x40 1024 96 SeEntity
+table 32 subparts 0x18040 2048 64 SeSubpart
+table 32 lights 0x38040 64 64 SeLight
+table 80 state 0x0 1 256 SeState
+table 96 time 0x0 1 64 SeTime
+table 112 status 0x0 1 256 SnStatus
+table 128 records 0x0 1024 128 DamageRecord
+table 144 header 0x0 1 64 SnCreaturesHeader
+table 144 records 0x40 256 48 SnCreature
+table 160 request 0x0 1 256 CaptureRequest
+table 160 result 0x800 1 256 CaptureResult
+message 48 1 ModelBegin
+message 48 2 ModelChunkHeader
+message 48 3 ModelEnd
+message 48 4 MaterialDefHeader
+message 48 5 SkinnedBindHeader
+message 64 1 GridAdd
+message 64 2 EntityRemove
+message 64 3 PartAdd
+message 64 4 PartRemove
+message 64 5 PartRecolor
+message 64 6 SkinSetHeader
+message 64 7 RoomSetHeader
+message 64 8 CharacterAdd
+message 64 9 ClearAll
+message 192 1 BatchStaticsHeader
+message 192 2 BatchClear
+const ApproachMode None 0
+const ApproachMode Track 1
+const ApproachMode Prime 2
+const C11Type Pad 0
+const C11Type Json 1
+const C12Type Pad 0
+const C12Type BatchStatics 1
+const C12Type BatchClear 2
+const C3Type Pad 0
+const C3Type ModelBegin 1
+const C3Type ModelChunk 2
+const C3Type ModelEnd 3
+const C3Type MaterialDef 4
+const C3Type SkinnedBind 5
+const C3Type MaxChunkBytes 4194304
+const C4Type Pad 0
+const C4Type GridAdd 1
+const C4Type EntityRemove 2
+const C4Type PartAdd 3
+const C4Type PartRemove 4
+const C4Type PartRecolor 5
+const C4Type SkinSet 6
+const C4Type RoomSet 7
+const C4Type CharacterAdd 8
+const C4Type ClearAll 9
+const CameraMode Other 0
+const CameraMode FirstPerson 1
+const CameraMode ThirdPerson 2
+const CameraMode Cockpit 3
+const CameraMode Spectator 4
+const Capabilities UnderwaterPicture 1
+const Capabilities CreaturesAndDamage 2
+const Capabilities Statics 4
+const Capabilities TimeOfDay 8
+const Capabilities Capture 16
+const CaptureKind NextFramePng 1
+const CaptureKind AtSeTick 2
+const CaptureStatus Pending 0
+const CaptureStatus Ok 1
+const CaptureStatus Failed 2
+const DamageFlags MouthContact 1
+const DamageFlags Radius 2
+const DamageFlags FallbackHitPoint 4
+const DamageFlags FrameSubgrid 8
+const DamageTargetKind GridSection 1
+const DamageTargetKind Character 2
+const DamageUnit SnHp 1
+const DevControl HarnessAttached 1
+const DevControl SeChatRelay 2
+const DisplayMode F 0
+const DisplayMode APrime 1
+const DisplayMode C 2
+const GridClass LargeGrid 1
+const GridClass SmallGrid 2
+const HostKind Subnautica1 1
+const MaterialFlags GlassCw 1
+const MaterialFlags GlassCcw 2
+const MaterialFlags AlphaMasked 4
+const ModelFlags Skinned 1
+const ModelFlags HasTangents 2
+const Overlays Paused 1
+const Overlays Unfocused 2
+const Overlays PeerStalled 4
+const Overlays PeerExited 8
+const PerfMode Idle 0
+const PerfMode Track 1
+const PerfMode Full 2
+const SeEntityFlags Static 1
+const SeEntityFlags InCameraGroup 2
+const SeEntityKind RootGrid 1
+const SeEntityKind Character 2
+const SeEntityKind FloatingObject 3
+const SeFlags GateOpen 1
+const SeFlags TerrainUp 2
+const SeFlags DisplayRefused 4
+const SeFlags FailSafeActive 8
+const SeFrameFlags InWorld 1
+const SeFrameFlags Paused 2
+const SeFrameFlags FirstPerson 4
+const SeFrameFlags CameraInAirtightRoom 8
+const SeFrameFlags Teleported 16
+const SeFrameFlags CharacterPresent 32
+const SeFrameFlags CharacterDead 64
+const SeFrameFlags CharacterSeated 128
+const SeFrameFlags CharacterSwimming 256
+const SeLightFlags Spot 1
+const SeLightFlags Shadows 2
+const SeLightFlags On 4
+const SePhase None 0
+const SePhase Menu 1
+const SePhase LoadingWorld 2
+const SePhase InWorld 3
+const SePhase Saving 4
+const SePhase Exiting 5
+const SeStateFlags SeForeground 1
+const SeStateFlags SePaused 2
+const SeStateFlags SeExiting 4
+const SeStateFlags SeeThrough 8
+const SeStateFlags CameraInAirtightRoom 16
+const SeStateFlags MarginsOn 32
+const SeStateFlags ZOrderOk 64
+const SeStateFlags SeMixActive 128
+const SeStateFlags GuiScreenOpen 256
+const SeTimeFlags TimeSyncValid 1
+const SeTimeFlags SkyOnly 2
+const SkinSectionKind Grid 1
+const SkinSectionKind Character 2
+const SnCreatureFlags Hunting 1
+const SnCreatureFlags TargetIsMirror 2
+const SnFlags BridgeMode 1
+const SnFlags GhostingDisabled 2
+const SnFlags StylesApplied 4
+const SnPhase None 0
+const SnPhase Booting 1
+const SnPhase Menu 2
+const SnPhase LoadingSave 3
+const SnPhase ReadyIdle 4
+const SnPhase WarmingUp 5
+const SnPhase Active 6
+const SnPhase Quitting 7
+const SnStatusFlags WorldLoaded 1
+const SnStatusFlags StreamingSettled 2
+const SnStatusFlags CombatEnabled 4
+const SnStatusFlags WireSelfTestPass 8
+const SnStatusFlags AreaBuilt 16
+const SnStatusFlags RectOk 32
+const SnStatusFlags UiHidden 64
+const SnStatusFlags Frozen 128
+const SnStatusFlags RunInBackgroundForced 256
+const SnStatusFlags TimeSyncApplied 512
+const SnStatusFlags DamageSelfTestPass 1024
+const StaticKind Box 1
+const StaticKind Capsule 2
+const StaticKind Sphere 3
+const StaticKind MeshObb 4
+const ViewState Space 0
+const ViewState Approach 1
+const ViewState Underwater 2
+const ViewState Surfacing 3
+const Zone Core 0
+const Zone TileVoid 1
+const Zone OuterVoid 2
+const Zone Far 3
+const Zone OffSite 4
+field BatchClear bx 0x0 2 i16
+field BatchClear by 0x2 2 i16
+field BatchClear bz 0x4 2 i16
+field BatchClear pad 0x6 2 u16
+field BatchClear epoch 0x8 4 u32
+field BatchClear pad 0xc 4 u32
+field BatchStaticsHeader bx 0x0 2 i16
+field BatchStaticsHeader by 0x2 2 i16
+field BatchStaticsHeader bz 0x4 2 i16
+field BatchStaticsHeader pad 0x6 2 u16
+field BatchStaticsHeader epoch 0x8 4 u32
+field BatchStaticsHeader count 0xc 4 u32
+field CaptureRequest seq 0x0 4 u32
+field CaptureRequest reqId 0x4 4 u32
+field CaptureRequest kind 0x8 4 u32
+field CaptureRequest pad 0xc 4 u32
+field CaptureRequest atSeTick 0x10 8 u64
+field CaptureRequest pathLength 0x18 2 u16
+field CaptureRequest path 0x1a 230 u8[230]
+field CaptureResult seq 0x0 4 u32
+field CaptureResult reqId 0x4 4 u32
+field CaptureResult status 0x8 4 u32
+field CaptureResult alpha 0xc 4 f32
+field CaptureResult snFrame 0x10 8 u64
+field CaptureResult seTickUsed 0x18 8 u64
+field CaptureResult pathLength 0x20 2 u16
+field CaptureResult path 0x22 222 u8[222]
+field CharacterAdd entityId 0x0 8 u64
+field CharacterAdd modelKey 0x8 8 u64
+field CharacterAdd flags 0x10 4 u32
+field CharacterAdd boneCount 0x14 4 u32
+field ClearAll worldEpoch 0x0 4 u32
+field ClearAll linkEpoch 0x4 4 u32
+field DamageRecord dedupSeq 0x0 4 u32
+field DamageRecord snGeneration 0x4 4 u32
+field DamageRecord unit 0x8 4 u32
+field DamageRecord amount 0xc 4 f32
+field DamageRecord seScaleExpected 0x10 4 f32
+field DamageRecord snDamageType 0x14 2 u16
+field DamageRecord flags 0x16 2 u16
+field DamageRecord targetKind 0x18 4 u32
+field DamageRecord sectionId 0x1c 4 u32
+field DamageRecord targetEntityId 0x20 8 u64
+field DamageRecord rootEntityId 0x28 8 u64
+field DamageRecord snapshotTick 0x30 8 u64
+field DamageRecord localHit 0x38 12 f32[3]
+field DamageRecord snWorldHit 0x44 12 f32[3]
+field DamageRecord attackDirSn 0x50 12 f32[3]
+field DamageRecord dealerTechType 0x5c 4 i32
+field DamageRecord dealerInstanceId 0x60 4 u32
+field DamageRecord worldEpoch 0x64 4 u32
+field DamageRecord snTimeSec 0x68 8 f64
+field DamageRecord pad 0x70 16 u8[16]
+field EntityRemove entityId 0x0 8 u64
+field GridAdd entityId 0x0 8 u64
+field GridAdd targetClass 0x8 4 u32
+field GridAdd flags 0xc 4 u32
+field GridAdd parentEntityId 0x10 8 u64
+field GridAdd worldEpoch 0x18 4 u32
+field GridAdd pad 0x1c 4 u32
+field MaterialDefHeader materialKey 0x0 8 u64
+field MaterialDefHeader drawTechnique 0x8 4 u32
+field MaterialDefHeader flags 0xc 4 u32
+field MessageHeader type 0x0 4 u32
+field MessageHeader payloadBytes 0x4 4 u32
+field ModelBegin modelKey 0x0 8 u64
+field ModelBegin lod 0x8 4 u32
+field ModelBegin vertexCount 0xc 4 u32
+field ModelBegin indexCount 0x10 4 u32
+field ModelBegin submeshCount 0x14 4 u32
+field ModelBegin flags 0x18 4 u32
+field ModelBegin bounds 0x1c 24 f32[6]
+field ModelBegin patternScale 0x34 4 f32
+field ModelBegin chunkCount 0x38 4 u32
+field ModelBegin totalBytes 0x3c 4 u32
+field ModelChunkHeader modelKey 0x0 8 u64
+field ModelChunkHeader chunkIndex 0x8 4 u32
+field ModelChunkHeader bytes 0xc 4 u32
+field ModelEnd modelKey 0x0 8 u64
+field ModelEnd payloadHash 0x8 8 u64
+field ModelSubmesh materialKey 0x0 8 u64
+field ModelSubmesh triStart 0x8 4 u32
+field ModelSubmesh triCount 0xc 4 u32
+field ModelSubmesh drawTechnique 0x10 4 u32
+field ModelSubmesh pad 0x14 4 u32
+field ModelVertex pos 0x0 12 f32[3]
+field ModelVertex normal 0xc 12 f32[3]
+field ModelVertex tangent 0x18 12 f32[3]
+field ModelVertex binormal 0x24 12 f32[3]
+field ModelVertex uv 0x30 8 f32[2]
+field ModelVertexSkinned pos 0x0 12 f32[3]
+field ModelVertexSkinned normal 0xc 12 f32[3]
+field ModelVertexSkinned tangent 0x18 12 f32[3]
+field ModelVertexSkinned binormal 0x24 12 f32[3]
+field ModelVertexSkinned uv 0x30 8 f32[2]
+field ModelVertexSkinned boneIndex 0x38 4 u8[4]
+field ModelVertexSkinned weight 0x3c 16 f32[4]
+field PartAdd entityId 0x0 8 u64
+field PartAdd partKey 0x8 8 u64
+field PartAdd modelKey 0x10 8 u64
+field PartAdd local 0x18 48 f32[12]
+field PartAdd colorMaskHSV 0x48 12 f32[3]
+field PartAdd uvOffset 0x54 8 f32[2]
+field PartAdd skinId 0x5c 4 u32
+field PartAdd flags 0x60 4 u32
+field PartRecolor entityId 0x0 8 u64
+field PartRecolor partKey 0x8 8 u64
+field PartRecolor hsv 0x10 12 f32[3]
+field PartRecolor pad 0x1c 4 u32
+field PartRemove entityId 0x0 8 u64
+field PartRemove partKey 0x8 8 u64
+field RegionEntry id 0x0 4 u32
+field RegionEntry kind 0x4 4 u32
+field RegionEntry offset 0x8 8 u64
+field RegionEntry size 0x10 8 u64
+field RegionEntry recordSize 0x18 4 u32
+field RegionEntry version 0x1c 4 u32
+field RingControlEntry head 0x0 8 u64
+field RingControlEntry pad 0x8 56 u8[56]
+field RingControlEntry tail 0x40 8 u64
+field RingControlEntry pad 0x48 56 u8[56]
+field RoomBox min 0x0 12 i32[3]
+field RoomBox max 0xc 12 i32[3]
+field RoomSetHeader entityId 0x0 8 u64
+field RoomSetHeader count 0x8 4 u32
+field RoomSetHeader pad 0xc 4 u32
+field SeBone rows 0x0 48 f32[12]
+field SeEntitiesHeader seq 0x0 4 u32
+field SeEntitiesHeader entityCount 0x4 4 u32
+field SeEntitiesHeader tick 0x8 8 u64
+field SeEntitiesHeader worldEpoch 0x10 4 u32
+field SeEntitiesHeader subpartCount 0x14 4 u32
+field SeEntitiesHeader lightCount 0x18 4 u32
+field SeEntitiesHeader pad 0x1c 36 u8[36]
+field SeEntity entityId 0x0 8 u64
+field SeEntity kind 0x8 4 u32
+field SeEntity flags 0xc 4 u32
+field SeEntity groupId 0x10 8 u64
+field SeEntity o 0x18 12 f32[3]
+field SeEntity q 0x24 16 f32[4]
+field SeEntity s 0x34 4 f32
+field SeEntity k 0x38 4 f32
+field SeEntity v 0x3c 12 f32[3]
+field SeEntity omega 0x48 12 f32[3]
+field SeEntity partsVersion 0x54 4 u32
+field SeEntity skinVersion 0x58 4 u32
+field SeEntity pad 0x5c 4 u32
+field SeFrame seq 0x0 4 u32
+field SeFrame flags 0x4 4 u32
+field SeFrame tick 0x8 8 u64
+field SeFrame qpcCapture 0x10 8 i64
+field SeFrame simTimeSec 0x18 8 f64
+field SeFrame simSpeed 0x20 4 f32
+field SeFrame worldEpoch 0x24 4 u32
+field SeFrame camPos 0x28 12 f32[3]
+field SeFrame camRot 0x34 16 f32[4]
+field SeFrame vFovDeg 0x44 4 f32
+field SeFrame near 0x48 4 f32
+field SeFrame aspect 0x4c 4 f32
+field SeFrame cameraMode 0x50 4 u32
+field SeFrame pad 0x54 4 u32
+field SeFrame characterId 0x58 8 u64
+field SeFrame charO 0x60 12 f32[3]
+field SeFrame charQ 0x6c 16 f32[4]
+field SeFrame charS 0x7c 4 f32
+field SeFrame boneCount 0x80 4 u32
+field SeFrame bonesVersion 0x84 4 u32
+field SeFrame pelvisSn 0x88 12 f32[3]
+field SeFrame pad 0x94 108 u8[108]
+field SeLight ownerId 0x0 8 u64
+field SeLight pos 0x8 12 f32[3]
+field SeLight dir 0x14 12 f32[3]
+field SeLight colour 0x20 12 f32[3]
+field SeLight range 0x2c 4 f32
+field SeLight intensity 0x30 4 f32
+field SeLight coneDeg 0x34 4 f32
+field SeLight flags 0x38 4 u32
+field SeLight pad 0x3c 4 u32
+field SeState seq 0x0 4 u32
+field SeState flags 0x4 4 u32
+field SeState tick 0x8 8 u64
+field SeState viewState 0x10 4 u32
+field SeState approachMode 0x14 4 u32
+field SeState displayMode 0x18 4 u32
+field SeState overlays 0x1c 4 u32
+field SeState zone 0x20 4 u32
+field SeState worldEpoch 0x24 4 u32
+field SeState perfMode 0x28 4 u32
+field SeState targetFps 0x2c 4 u32
+field SeState snBusTarget 0x30 4 f32
+field SeState crossfadeMs 0x34 4 f32
+field SeState helloEpoch 0x38 4 u32
+field SeState linkEpoch 0x3c 4 u32
+field SeState Rs 0x40 8 f64
+field SeState siteHash 0x48 8 u64
+field SeState siteVersion 0x50 4 u32
+field SeState pad 0x54 4 u32
+field SeState seRect 0x58 16 i32[4]
+field SeState camSnY 0x68 4 f32
+field SeState camVelSn 0x6c 12 f32[3]
+field SeState crossingTick 0x78 8 u64
+field SeState pad 0x80 128 u8[128]
+field SeSubpart ownerId 0x0 8 u64
+field SeSubpart partKey 0x8 8 u64
+field SeSubpart local 0x10 48 f32[12]
+field SeTime seq 0x0 4 u32
+field SeTime jumpSeq 0x4 4 u32
+field SeTime tick 0x8 8 u64
+field SeTime hourAngleRad 0x10 8 f64
+field SeTime sunElevationRad 0x18 4 f32
+field SeTime sunDirSn 0x1c 12 f32[3]
+field SeTime dayLengthSec 0x28 4 f32
+field SeTime simSpeed 0x2c 4 f32
+field SeTime paused 0x30 4 u32
+field SeTime flags 0x34 4 u32
+field SeTime sunriseHourAngleRad 0x38 4 f32
+field SeTime pad 0x3c 4 u32
+field SectionHeader magic 0x0 4 u32
+field SectionHeader layoutMajor 0x4 2 u16
+field SectionHeader layoutMinor 0x6 2 u16
+field SectionHeader byteOrderMark 0x8 4 u32
+field SectionHeader headerSize 0xc 4 u32
+field SectionHeader sectionSize 0x10 8 u64
+field SectionHeader layoutHash 0x18 8 u64
+field SectionHeader wireVersion 0x20 4 u32
+field SectionHeader siteVersion 0x24 4 u32
+field SectionHeader damageScaleVersion 0x28 4 u32
+field SectionHeader regionCount 0x2c 4 u32
+field SectionHeader qpcFrequency 0x30 8 u64
+field SectionHeader devControl 0x38 4 u32
+field SectionHeader pad 0x3c 4 u32
+field SectionHeader snPid 0x40 4 u32
+field SectionHeader snGeneration 0x44 4 u32
+field SectionHeader snHeartbeatMs 0x48 8 u64
+field SectionHeader snPhase 0x50 4 u32
+field SectionHeader snFlags 0x54 4 u32
+field SectionHeader snHwnd 0x58 8 u64
+field SectionHeader pad 0x60 32 u8[32]
+field SectionHeader sePid 0x80 4 u32
+field SectionHeader seGeneration 0x84 4 u32
+field SectionHeader seHeartbeatMs 0x88 8 u64
+field SectionHeader sePhase 0x90 4 u32
+field SectionHeader seFlags 0x94 4 u32
+field SectionHeader seHwnd 0x98 8 u64
+field SectionHeader seLoadStep 0xa0 4 u32
+field SectionHeader pad 0xa4 92 u8[92]
+field SkinBox centre 0x0 12 f32[3]
+field SkinBox half 0xc 12 f32[3]
+field SkinBox axes 0x18 36 f32[9]
+field SkinBox flags 0x3c 4 u32
+field SkinSection sectionId 0x0 4 u32
+field SkinSection centre 0x4 12 f32[3]
+field SkinSection boxCount 0x10 4 u32
+field SkinSection kind 0x14 4 u32
+field SkinSetHeader entityId 0x0 8 u64
+field SkinSetHeader skinVersion 0x8 4 u32
+field SkinSetHeader sectionCount 0xc 4 u32
+field SkinnedBindHeader modelKey 0x0 8 u64
+field SkinnedBindHeader boneCount 0x8 4 u32
+field SkinnedBindHeader pad 0xc 4 u32
+field SnCreature instanceId 0x0 4 u32
+field SnCreature techType 0x4 4 i32
+field SnCreature posSn 0x8 12 f32[3]
+field SnCreature velSn 0x14 12 f32[3]
+field SnCreature aggression 0x20 4 f32
+field SnCreature flags 0x24 4 u32
+field SnCreature targetEntityId 0x28 8 u64
+field SnCreaturesHeader seq 0x0 4 u32
+field SnCreaturesHeader count 0x4 4 u32
+field SnCreaturesHeader snFrame 0x8 8 u64
+field SnCreaturesHeader pad 0x10 48 u8[48]
+field SnStatus seq 0x0 4 u32
+field SnStatus flags 0x4 4 u32
+field SnStatus snPhase 0x8 4 u32
+field SnStatus perfModeApplied 0xc 4 u32
+field SnStatus snFrame 0x10 8 u64
+field SnStatus presentedSeTick 0x18 8 u64
+field SnStatus areaBuiltSeTick 0x20 8 u64
+field SnStatus areaBuiltPos 0x28 12 f32[3]
+field SnStatus helloAckEpoch 0x34 4 u32
+field SnStatus linkAckEpoch 0x38 4 u32
+field SnStatus mirroredEntityCount 0x3c 4 u32
+field SnStatus pendingParts 0x40 4 u32
+field SnStatus damageDropped 0x44 4 u32
+field SnStatus c3BytesDrained 0x48 8 u64
+field SnStatus damageOverflowDepth 0x50 4 u32
+field SnStatus frameMsP50 0x54 4 f32
+field SnStatus frameMsP99 0x58 4 f32
+field SnStatus hostKind 0x5c 4 u32
+field SnStatus snHwnd 0x60 8 u64
+field SnStatus snRect 0x68 16 i32[4]
+field SnStatus capabilities 0x78 4 u32
+field SnStatus vSyncCountApplied 0x7c 4 u32
+field SnStatus targetFrameRateApplied 0x80 4 i32
+field SnStatus fixedDeltaTime 0x84 4 f32
+field SnStatus resamplesLastFrame 0x88 4 u32
+field SnStatus pad 0x8c 116 u8[116]
+field StaticPrimitive kind 0x0 1 u8
+field StaticPrimitive flags 0x1 1 u8
+field StaticPrimitive pad 0x2 2 u16
+field StaticPrimitive centreSn 0x4 12 f32[3]
+field StaticPrimitive qSn 0x10 16 f32[4]
+field StaticPrimitive size 0x20 12 f32[3]
+field StaticPrimitive classIdHash 0x2c 4 u32

@@ -1,0 +1,124 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- SN plugin tests: the Unity-free SN sources (SectionLink, SePeerMonitor, ControlConsumer,
+ Json, DevMutants, WindowRole, Logging, BuildFlavor; S1: FrameReader, HostSaveRules, S1Args) compiled into the
+ test assembly and driven against real
+ named sections and real child processes. BridgeBehaviour (a MonoBehaviour) cannot run outside Unity: its
+ decisions live in SectionLink (CreateValidated / ValidateOwn / Classify / Withdraw), tested here.
+ BepInEx.dll and UnityEngine.CoreModule.dll are referenced from the install (Private=false, never copied) and
+ resolved at run time from the paths below (Rig.cs, AssemblyInitialize). Run: dotnet test tests/DeepEngineers.SN.Tests -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <AssemblyName>DeepEngineers.SN.Tests</AssemblyName>
+    <RootNamespace>DeepEngineers.SN.Tests</RootNamespace>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)..\DeepEngineers.Wire.Tests\wire.runsettings</RunSettingsFilePath>
+    <!-- DeLog.Frame is assigned by the bridge only -->
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.0" />
+    <ProjectReference Include="..\..\src\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\src\DeepEngineers.SN\BuildFlavor.cs" Link="sn\BuildFlavor.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\Logging.cs" Link="sn\Logging.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\Json.cs" Link="sn\Json.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\DevMutants.cs" Link="sn\DevMutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\Link.cs" Link="sn\Link.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\PeerMonitor.cs" Link="sn\PeerMonitor.cs" />
+    <!-- S8-robustness: the reaction table, the quit path and step, de.stallSn syntax, the Alt+Tab/ESC audit, memory text -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S8Rules.cs" Link="sn\S8Rules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\ControlConsumer.cs" Link="sn\ControlConsumer.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\WindowRole.cs" Link="sn\WindowRole.cs" />
+    <!-- S1 Unity-free parts: C1 reader/interpolation, host-save decision table and switches, C11 argument and capture-path helpers -->
+    <Compile Include="..\..\src\DeepEngineers.SN\FrameReader.cs" Link="sn\FrameReader.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\HostSaveRules.cs" Link="sn\HostSaveRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\S1Args.cs" Link="sn\S1Args.cs" />
+    <!--
+ comparison, window style bits, biome tile test, calibration colour parser, switches, frame pacing -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S2Rules.cs" Link="sn\S2Rules.cs" />
+    <!-- S3 Unity-free parts: C3 assembler, model payload, C4 state, C2 pose table and sampler (MirrorWire), the mirrored
+ mesh build pass and winding measure (MeshBuilder), DDS parsing, mip skipping, repack and paint rules (TextureRules),
+ Frame/Entity math, upload scheduler, worker, lab plan, capture list, options and mutant set (S3Rules) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\MirrorWire.cs" Link="sn\MirrorWire.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\MeshBuilder.cs" Link="sn\MeshBuilder.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\TextureRules.cs" Link="sn\TextureRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\S3Rules.cs" Link="sn\S3Rules.cs" />
+    <!-- S5a Unity-free parts: swim-extension state/visibility mapping, the contract log lines, the OxygenManager mirror
+ arithmetic, the low-O2 monitor twin, the breath scheduler, the arms' motion reconstruction, switches -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S5aRules.cs" Link="sn\S5aRules.cs" />
+    <!-- S4 Unity-free parts: the de.s4 request grammar, the camera hold ladder and its per-frame decision, the vertical
+ ray/triangle test of the render pass, the batch with its C11 replies, the DE.S4 log lines and s4.* JSONL rows -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S4Rules.cs" Link="sn\S4Rules.cs" />
+    <!-- S5 Unity-free parts: the S5 conventions as read here (version nibble, part roles, chunk bits), canon1, fpbody,
+ S5.M4/M5, the chunk build gate and queue, frame statistics, rows; affine/mirror math, C2 row sampling, the
+ character bone math, skinned weights and builds, the C1 character reader -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S5Rules.cs" Link="sn\S5Rules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\S5Math.cs" Link="sn\S5Math.cs" />
+    <!-- S6 Unity-free part: the switch and mutant names, the SkinSet store (MirrorState.Feed's C4 type 6 case), the emit
+ rule and C8 record build pass, hit-point frames, the shape queue over Wire's ShapeBudget, the physics-rate rule,
+ the Freedom line, the self-check bookkeeping, spawn arguments, penetration streaks, synthetic skins, s6 rows -->
+    <Compile Include="..\..\src\DeepEngineers.SN\Combat\S6Rules.cs" Link="sn\S6Rules.cs" />
+    <!-- S11 hook: the Unity-free S11 rules of the Subnautica side (DevMutants.cs names S11Mutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S11\S11SnRules.cs" Link="sn\S11SnRules.cs" />
+    <!-- S16 hook: the Unity-free S16 part of the Subnautica side (DevMutants.cs names S16SnMutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S16\S16SnRules.cs" Link="sn\S16SnRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\S13\S13SnRules.cs" Link="sn\S13SnRules.cs" /><!-- S13 hook: the pure rules (DevMutants and CharSourceRules call them) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S14\S14SnRules.cs" Link="sn\S14SnRules.cs" /><!-- S14 hook: the envelope and the mutants (DevMutants calls them) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S15\S15SnRules.cs" Link="sn\S15SnRules.cs" /><!-- S15 hook: the voice queue, the sky bodies and the mutants (DevMutants calls them) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S12\S12SnRules.cs" Link="sn\S12SnRules.cs" /><!-- S12 hook: the start reader, the easing, the plane corners and the mutants (DevMutants calls them) -->
+    <!-- S7a Unity-free parts: the out-of-water animator parameters, the source and arms rules, the
+ time drive's decisions (DayNightRules), the shared S7a facts, switches and row cadence -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S7aAnimRules.cs" Link="sn\S7aAnimRules.cs" />
+    <!-- S7a Unity-free part of the placement ghost view: marker, colours, material chain, visibility, presented ticks -->
+    <Compile Include="..\..\src\DeepEngineers.SN\GhostRules.cs" Link="sn\GhostRules.cs" />
+    <!-- S7 Unity-free parts: the S7 mutant names (DevMutants knows them), the skinned
+ astronaut's extra-bone and component-wise pose math and its rows' rules, the audio polish rules -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S7Mutants.cs" Link="sn\S7Mutants.cs" />
+    <!-- S8a (terrain converter): the SN mutant names (DevMutants.IsKnown needs them) and the game-free rules: the store view,
+ the notice file check, the clipmap cell ranges and cap, the reload tracker (ack/applied, retry, give-up), the paths -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S8aMutants.cs" Link="sn\S8aMutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\S8aRules.cs" Link="sn\S8aRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\SkinnedAstronautRules.cs" Link="sn\SkinnedAstronautRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SN\AudioPolishRules.cs" Link="sn\AudioPolishRules.cs" />
+    <!-- S7 Unity-free part: the RoomSet store (MirrorState.Feed's C4 type 7 case), the chunk
+ class of the S5 cell key, the inside-walkable rule and the N2 caller trace -->
+    <Compile Include="..\..\src\DeepEngineers.SN\InteriorRules.cs" Link="sn\InteriorRules.cs" />
+    <!-- S7p-gameplay (P11 creature damage rules, P14 room index and mirror budgets, P13 axis freedom); InteriorRules.cs calls the room index -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S7pGameplayRules.cs" Link="sn\S7pGameplayRules.cs" />
+    <!-- S7p-character (P8 first-person part rule and fpbody default, P9 SE's paint per texel, P10 light kinds and scales); S5Rules.cs calls the fpbody default -->
+    <Compile Include="..\..\src\DeepEngineers.SN\S7pCharacterRules.cs" Link="sn\S7pCharacterRules.cs" />
+    <!-- S7t-sn-altitude (T2 horizon/haze table, the skirt rows, T3 impostor rules); MeshBuilder.cs reads ImpostorRules -->
+    <Compile Include="..\..\src\DeepEngineers.SN\AltitudeRules.cs" Link="sn\AltitudeRules.cs" />
+    <!-- S7t-look-match (T5): the Subnautica look-match rules (altitude weight, gate, member capture/restore, de.s7t look syntax) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\LookMatchRules.cs" Link="sn\LookMatchRules.cs" />
+    <!-- S7t-colour-mask (T6): SE's colour mask (the shader key with SE's ColorizeHSV, the texel/bake replay, bake sizes,
+ budget and eviction, the de.s7t mask grammar and env) -->
+    <Compile Include="..\..\src\DeepEngineers.SN\ColorMaskRules.cs" Link="sn\ColorMaskRules.cs" />
+    <EmbeddedResource Include="..\..\src\DeepEngineers.Wire\Data\SeSkeleton.canon1.tsv" LogicalName="DeepEngineers.SN.SeSkeleton.canon1.tsv" />
+  </ItemGroup>
+
+  <!-- Loader and engine assemblies: referenced from the install, never copied (ROADMAP §5.3). -->
+  <ItemGroup>
+    <Reference Include="BepInEx"><HintPath>$(BepInExCore)\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(SubnauticaManaged)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>DeepEngineers.ResolveDir</_Parameter1>
+      <_Parameter2>$(BepInExCore)</_Parameter2>
+    </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute">
+      <_Parameter1>DeepEngineers.ResolveDir</_Parameter1>
+      <_Parameter2>$(SubnauticaManaged)</_Parameter2>
+    </AssemblyAttribute>
+  </ItemGroup>
+</Project>

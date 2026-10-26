@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ DeepEngineers.World: the dive planet DE_4546B, site version 1 (docs/CONTRACT.md section 3, tools/worldmap/site_v1.py).
+ Our own definition. Spawn size 120000 (storage radius R = 60000): MinimumRadius 57000 (flat floor, all-zero
+ heightmaps), AverageRadius 60000 (the Water Mod sea, Data/WaterConfig.xml), MaximumRadius 67200.
+ No SurfaceDetail, EnvironmentItems or WeatherGenerators; the OreMappings, the CustomMaterialTable and the
+ biome map (_mat G) are the designed planet's (tools/planet/layout_4546b.json, S8a Stage C). The empty CloudLayers element is defensive:
+ SE iterates CloudLayers of every mod planet definition without a null check (its serializer also gives an empty
+ list when the element is absent). The material map R value 1 selects Sand_02; without the maps the floor is Stone.
+ Checked by: python -I tools/worldmod/check_planet.py
+-->
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Definition xsi:type="PlanetGeneratorDefinition">
+    <Id>
+      <TypeId>PlanetGeneratorDefinition</TypeId>
+      <SubtypeId>DE_4546B</SubtypeId>
+    </Id>
+    <DisplayName>DE_4546B</DisplayName>
+    <Description>DeepEngineers dive planet (site v1). Spawn size 120000. Ocean world: flat floor 3000 m below the sea.</Description>
+    <Public>true</Public>
+    <PlanetMaps Material="true" Ores="true" Biome="true" Occlusion="false" />
+    <CustomMaterialTable>
+      <Material Material="Sand_02" Value="1" MaxDepth="5" />
+      <Material Material="Stone_01" Value="2" MaxDepth="5" />
+      <Material Material="Stone_02" Value="3" MaxDepth="5" />
+      <Material Material="Stone_03" Value="4" MaxDepth="5" />
+      <Material Material="Stone_04" Value="5" MaxDepth="5" />
+      <Material Material="Stone_05" Value="6" MaxDepth="5" />
+      <Material Material="Grass" Value="7" MaxDepth="5" />
+    </CustomMaterialTable>
+    <OreMappings>
+      <Ore Value="10" Type="Iron_02" Start="0" Depth="10" TargetColor="#8a5a3c" ColorInfluence="15" />
+      <Ore Value="20" Type="Nickel_01" Start="0" Depth="8" TargetColor="#6e7a6a" ColorInfluence="15" />
+      <Ore Value="30" Type="Silicon_01" Start="0" Depth="8" TargetColor="#d8d0b8" ColorInfluence="15" />
+      <Ore Value="40" Type="Cobalt_01" Start="3" Depth="6" TargetColor="#3a5ea8" ColorInfluence="15" />
+      <Ore Value="41" Type="Cobalt_01" Start="0" Depth="9" TargetColor="#3a5ea8" ColorInfluence="15" />
+      <Ore Value="50" Type="Magnesium_01" Start="3" Depth="6" TargetColor="#c8c8b4" ColorInfluence="15" />
+      <Ore Value="51" Type="Magnesium_01" Start="0" Depth="9" TargetColor="#c8c8b4" ColorInfluence="15" />
+      <Ore Value="60" Type="Silver_01" Start="4" Depth="5" TargetColor="#9fa6ad" ColorInfluence="15" />
+      <Ore Value="61" Type="Silver_01" Start="0" Depth="9" TargetColor="#9fa6ad" ColorInfluence="15" />
+      <Ore Value="70" Type="Gold_01" Start="4" Depth="5" TargetColor="#c9a43a" ColorInfluence="15" />
+      <Ore Value="71" Type="Gold_01" Start="0" Depth="9" TargetColor="#c9a43a" ColorInfluence="15" />
+      <Ore Value="80" Type="Platinum_01" Start="5" Depth="4" TargetColor="#b8c4d0" ColorInfluence="15" />
+      <Ore Value="81" Type="Platinum_01" Start="0" Depth="9" TargetColor="#b8c4d0" ColorInfluence="15" />
+      <Ore Value="90" Type="Uraninite_01" Start="5" Depth="4" TargetColor="#5a8a3c" ColorInfluence="15" />
+      <Ore Value="91" Type="Uraninite_01" Start="0" Depth="9" TargetColor="#5a8a3c" ColorInfluence="15" />
+    </OreMappings>
+    <DefaultSurfaceMaterial Material="Stone" MaxDepth="5" />
+    <DefaultSubSurfaceMaterial Material="Stone" />
+    <SurfaceGravity>1.0</SurfaceGravity>
+    <GravityFalloffPower>7</GravityFalloffPower>
+    <HasAtmosphere>true</HasAtmosphere>
+    <Atmosphere>
+      <Breathable>true</Breathable>
+      <OxygenDensity>0.9</OxygenDensity>
+      <Density>1.0</Density>
+      <LimitAltitude>2.0</LimitAltitude>
+      <MaxWindSpeed>80</MaxWindSpeed>
+    </Atmosphere>
+    <!-- it doesn't have any, it might explain
+ why the transition to SE is ugly"): until then the definition carried no AtmosphereSettings and no CloudLayers
+ (SE's defaults). The blocks below are EarthLike's from the game's own PlanetGeneratorDefinitions.sbc (values, no
+ assets; the cloud textures are the game's, referenced by path). -->
+    <!--
+ pair: sky top SN (123,176,234), horizon SN (197,241,255) a white haze band, far water SN L152 vs SE L67). SE's
+ renderer: beta_rayleigh = (5.8e-6, 1.35e-5, 3.31e-5) / RayleighScattering, beta_mie = 2e-5 / MieColorScattering per
+ channel
+ EarthLike's zenith ratio R:G:B = 0.11: 0.31: 1 (thin).. 0.36: 0.50: 1 (lifted
+ like SE's default sky in the pair) against Subnautica's 0.24: 0.52: 1 (linear): red is right, green low
+ (too violet) -> Y 84 -> 74. EarthLike's Mie is red-heavy (a warm haze) where Subnautica's horizon is a blue-white
+ band -> MieColorScattering (44, 62, 150) -> (50, 60, 90). Aerial perspective over the far water -> FogIntensity
+ 1.0 -> 1.4. EarthLike's values (to go back): RayleighScattering 100/84/63, MieColorScattering 44/62/150,
+ FogIntensity 1.0. The plugin's live keys (de.s7t look rayleigh=x,y,z mieColor=x,y,z atmoFog=f...) blend any other
+ set across the band without a reload; this definition is read at world load (deploy_worldmod.ps1, SE closed). -->
+    <!--
+ the limb halo question stays open (SE's defaults showed one, these values do not) - next week. -->
+    <AtmosphereSettings>
+      <RayleighScattering>
+        <X>100</X>
+        <Y>74</Y>
+        <Z>63</Z>
+      </RayleighScattering>
+      <MieScattering>50</MieScattering>
+      <MieColorScattering>
+        <X>50</X>
+        <Y>60</Y>
+        <Z>90</Z>
+      </MieColorScattering>
+      <RayleighHeight>36</RayleighHeight>
+      <RayleighHeightSpace>15</RayleighHeightSpace>
+      <RayleighTransitionModifier>0.4</RayleighTransitionModifier>
+      <MieHeight>200</MieHeight>
+      <MieG>0.999832332</MieG>
+      <Intensity>6</Intensity>
+      <SeaLevelModifier>1.0</SeaLevelModifier>
+      <AtmosphereTopModifier>1.1</AtmosphereTopModifier>
+      <FogIntensity>1.4</FogIntensity>
+      <Scale>1</Scale>
+      <SunColor>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </SunColor>
+      <SunSpecularColor>
+        <X>1</X>
+        <Y>0.984</Y>
+        <Z>0.843</Z>
+      </SunSpecularColor>
+    </AtmosphereSettings>
+    <CloudLayers>
+      <CloudLayer>
+        <!-- Far layer -->
+          <Model>Models/Environment/Sky/CloudSphere.mwm</Model>
+          <Textures>
+            <Texture>Textures/Models/Environment/Sky/EarthFarClouds.dds</Texture>
+          </Textures>
+          <RelativeAltitude>0.9</RelativeAltitude>
+          <RotationAxis>
+            <X>-0.2</X>
+            <Y>1</Y>
+            <Z>0.2</Z>
+          </RotationAxis>
+          <AngularVelocity>0.0002</AngularVelocity>
+          <InitialRotation>1.2</InitialRotation>
+          <ScalingEnabled>false</ScalingEnabled>
+          <FadeOutRelativeAltitudeStart>2.0</FadeOutRelativeAltitudeStart>
+          <FadeOutRelativeAltitudeEnd>1.4</FadeOutRelativeAltitudeEnd>
+          <ApplyFogRelativeDistance>0.05</ApplyFogRelativeDistance>
+          <!-- S15 part B: the far layer, the one seen from orbit, tinted toward the clouds of Subnautica's ending
+ py: (120, 114, 110) sRGB, a warm white, normalised to its
+ brightest channel so the lighting stays SE's). MyCloudLayerSettings.Color,
+ handed to the renderer linear. SE draws the Water Mod's sea after its clouds
+ and its atmosphere: over the sea both show from below and at the limb,
+ not from above. The atmosphere above stays T5's: its rim already goes warm toward the sun (Rayleigh) and
+ blue-white elsewhere (Mie 50/60/90), as the ending's (S15.LIMB measures it against the ending's rim). -->
+          <Color>
+            <X>1</X>
+            <Y>0.95</Y>
+            <Z>0.917</Z>
+            <W>1</W>
+          </Color>
+        </CloudLayer>
+
+        <!-- Near layers -->
+          <CloudLayer>
+            <Model>Models/Environment/Sky/CloudSphere.mwm</Model>
+            <Textures>
+              <Texture>Textures/Models/Environment/Sky/Landsky_texture.dds</Texture>
+            </Textures>
+            <RelativeAltitude>1.0</RelativeAltitude>
+            <RotationAxis>
+              <X>0</X>
+              <Y>1</Y>
+              <Z>0</Z>
+            </RotationAxis>
+            <AngularVelocity>0.0006</AngularVelocity>
+            <InitialRotation>0.15</InitialRotation>
+            <ScalingEnabled>false</ScalingEnabled>
+            <FadeOutRelativeAltitudeStart>0.5</FadeOutRelativeAltitudeStart>
+            <FadeOutRelativeAltitudeEnd>1.6</FadeOutRelativeAltitudeEnd>
+          </CloudLayer>
+
+          <CloudLayer>
+            <Model>Models/Environment/Sky/CloudSphere.mwm</Model>
+            <Textures>
+              <Texture>Textures/Models/Environment/Sky/Landsky_texture.dds</Texture>
+            </Textures>
+            <RelativeAltitude>2.0</RelativeAltitude>
+            <RotationAxis>
+              <X>0.2</X>
+              <Y>1</Y>
+              <Z>-0.2</Z>
+            </RotationAxis>
+            <AngularVelocity>0.0006</AngularVelocity>
+            <InitialRotation>0.5</InitialRotation>
+            <ScalingEnabled>false</ScalingEnabled>
+            <FadeOutRelativeAltitudeStart>0.7</FadeOutRelativeAltitudeStart>
+            <FadeOutRelativeAltitudeEnd>1.5</FadeOutRelativeAltitudeEnd>
+          </CloudLayer>
+
+          <CloudLayer>
+            <Model>Models/Environment/Sky/CloudSphere.mwm</Model>
+            <Textures>
+              <Texture>Textures/Models/Environment/Sky/Landsky_texture.dds</Texture>
+            </Textures>
+            <RelativeAltitude>3.0</RelativeAltitude>
+            <RotationAxis>
+              <X>-0.2</X>
+              <Y>1</Y>
+              <Z>0.2</Z>
+            </RotationAxis>
+            <AngularVelocity>0.0006</AngularVelocity>
+            <InitialRotation>1.2</InitialRotation>
+            <ScalingEnabled>false</ScalingEnabled>
+            <FadeOutRelativeAltitudeStart>0.8</FadeOutRelativeAltitudeStart>
+            <FadeOutRelativeAltitudeEnd>1.4</FadeOutRelativeAltitudeEnd>
+          </CloudLayer>
+        </CloudLayers>
+    <HillParams Min="-0.05" Max="0.12" />
+  </Definition>
+</Definitions>

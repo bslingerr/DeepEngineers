@@ -1,0 +1,26 @@
+# sequence	tick	depth	limit	level	reason (only ticks with a creak; the C# replays the sequence)
+descent	360	150.0	200.0	1	enter
+descent	660	175.0	200.0	2	rise
+descent	961	200.08333333333331	200.0	3	rise
+descent	1141	215.08333333333331	200.0	3	period
+descent	1321	230.08333333333331	200.0	3	period
+descent	1501	245.08333333333331	200.0	3	period
+descent	1681	260.0833333333333	200.0	3	period
+bounce	0	160.0	200.0	1	enter
+bounce	540	164.5	200.0	1	period
+bounce	1080	157.0	200.0	1	period
+bounce	1620	154.0	200.0	1	period
+bounce	2160	172.0	200.0	1	period
+bounce	2250	175.0	200.0	2	rise
+bounce	2610	187.0	200.0	2	period
+bounce	2970	199.0	200.0	2	period
+bounce	3001	200.03333333333333	200.0	3	rise
+bounce	3181	206.03333333333333	200.0	3	period
+approach	0	860.0	900.0	1	enter
+approach	540	864.5	900.0	1	period
+approach	1080	869.0	900.0	1	period
+approach	1620	873.5	900.0	1	period
+approach	1800	875.0	900.0	2	rise
+approach	2160	878.0	900.0	2	period
+approach	2520	881.0	900.0	2	period
+approach	2880	884.0	900.0	2	period

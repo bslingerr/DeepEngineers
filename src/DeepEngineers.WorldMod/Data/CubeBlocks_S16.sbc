@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ DeepEngineers.World, S16 depth progression (ROADMAP section 14 "S16"; CONTRACT section 5.4 "S16 conventions", tier rows):
+ two pressure hull upgrade blocks per grid size, paid with alloy components the assembler makes from the planet ores (Mk1 cobalt/magnesium/
+ silver, Mk2 gold/platinum/uranium ingots). Plain
+ CubeBlock definitions (no terminal, no power, so no Computer component: MyDefinitionManager.InitCubeBlocks), reusing
+ the game small-reactor model and construction stages and the upgrade-module icons by their content paths
+ (MyDefinitionManager.ProcessContentFilePath: a path absent from the mod folder resolves to the game Content); no game
+ asset is copied into this mod. Checked by tools/worldmod/check_planet.py (s16.* rows, tools/worldmod/s16_blocks.py).
+-->
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Components>
+        <Component>
+            <Id>
+                <TypeId>Component</TypeId>
+                <SubtypeId>DE_HullAlloyMk1</SubtypeId>
+            </Id>
+            <DisplayName>Hull Alloy Mk1</DisplayName>
+            <Description>Pressure hull alloy (cobalt, magnesium, silver ingots) for the Pressure Hull Mk1.</Description>
+            <Icon>Textures\GUI\Icons\component\metal_grid_component.dds</Icon>
+            <Size>
+                <X>0.5</X>
+                <Y>0.5</Y>
+                <Z>0.05</Z>
+            </Size>
+            <Mass>15</Mass>
+            <Volume>6</Volume>
+            <Model>Models\Components\metal_grid_component.mwm</Model>
+            <PhysicalMaterial>Metal</PhysicalMaterial>
+            <MaxIntegrity>40</MaxIntegrity>
+            <DropProbability>0.9</DropProbability>
+            <Health>60</Health>
+            <CanPlayerOrder>false</CanPlayerOrder>
+            <CanPlayerOffer>false</CanPlayerOffer>
+        </Component>
+        <Component>
+            <Id>
+                <TypeId>Component</TypeId>
+                <SubtypeId>DE_HullAlloyMk2</SubtypeId>
+            </Id>
+            <DisplayName>Hull Alloy Mk2</DisplayName>
+            <Description>Pressure hull alloy (gold, platinum, uranium ingots) for the Pressure Hull Mk2.</Description>
+            <Icon>Textures\GUI\Icons\component\superconductor_conducts_component.dds</Icon>
+            <Size>
+                <X>0.5</X>
+                <Y>0.5</Y>
+                <Z>0.03</Z>
+            </Size>
+            <Mass>20</Mass>
+            <Volume>6</Volume>
+            <Model>Models\Components\superconductor_conducts_component.mwm</Model>
+            <PhysicalMaterial>Metal</PhysicalMaterial>
+            <MaxIntegrity>60</MaxIntegrity>
+            <DropProbability>0.9</DropProbability>
+            <Health>60</Health>
+            <CanPlayerOrder>false</CanPlayerOrder>
+            <CanPlayerOffer>false</CanPlayerOffer>
+        </Component>
+    </Components>
+    <Blueprints>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_HullAlloyMk1</SubtypeId>
+            </Id>
+            <DisplayName>Hull Alloy Mk1</DisplayName>
+            <Icon>Textures\GUI\Icons\component\metal_grid_component.dds</Icon>
+            <Prerequisites>
+                <Item Amount="10" TypeId="Ingot" SubtypeId="Cobalt" />
+                <Item Amount="4" TypeId="Ingot" SubtypeId="Magnesium" />
+                <Item Amount="5" TypeId="Ingot" SubtypeId="Silver" />
+            </Prerequisites>
+            <Result Amount="1" TypeId="Component" SubtypeId="DE_HullAlloyMk1" />
+            <BaseProductionTimeInSeconds>10</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_HullAlloyMk2</SubtypeId>
+            </Id>
+            <DisplayName>Hull Alloy Mk2</DisplayName>
+            <Icon>Textures\GUI\Icons\component\superconductor_conducts_component.dds</Icon>
+            <Prerequisites>
+                <Item Amount="3" TypeId="Ingot" SubtypeId="Gold" />
+                <Item Amount="1" TypeId="Ingot" SubtypeId="Platinum" />
+                <Item Amount="1" TypeId="Ingot" SubtypeId="Uranium" />
+            </Prerequisites>
+            <Result Amount="1" TypeId="Component" SubtypeId="DE_HullAlloyMk2" />
+            <BaseProductionTimeInSeconds>15</BaseProductionTimeInSeconds>
+        </Blueprint>
+    </Blueprints>
+    <BlueprintClassEntries>
+        <Entry Class="Components" BlueprintSubtypeId="DE_HullAlloyMk1" />
+        <Entry Class="Components" BlueprintSubtypeId="DE_HullAlloyMk2" />
+    </BlueprintClassEntries>
+    <CubeBlocks>
+<!--
+ blocks, referenced by path into the game's install with their construction stages; nothing copied. The Space Ball Mk3 went with depth 11. -->
+        <Definition>
+            <Id>
+                <TypeId>CubeBlock</TypeId>
+                <SubtypeId>DE_PressureHullMk1Large</SubtypeId>
+            </Id>
+            <DisplayName>Pressure Hull Mk1</DisplayName>
+            <Description>DeepEngineers: raises the crush depth of this grid to 1,400 m. The best working pressure hull on a grid counts. Its alloy comes from iron, nickel and silicon.</Description>
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEnergy.dds</Icon>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\VirtualMassBlock.mwm</Model>
+            <Components>
+                <Component Subtype="SteelPlate" Count="40" />
+                <Component Subtype="Construction" Count="20" />
+                <Component Subtype="LargeTube" Count="10" />
+                <Component Subtype="Motor" Count="6" />
+                <Component Subtype="DE_HullAlloyMk1" Count="20" />
+                <Component Subtype="SteelPlate" Count="20" />
+            </Components>
+            <CriticalComponent Subtype="DE_HullAlloyMk1" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Top" StartX="0.15" StartY="0.15" EndX="0.85" EndY="0.85" />
+                <MountPoint Side="Back" StartX="0.15" StartY="0.15" EndX="0.85" EndY="0.85" />
+                <MountPoint Side="Right" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+                <MountPoint Side="Left" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+                <MountPoint Side="Bottom" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" Default="true" />
+                <MountPoint Side="Front" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\VirtualMassBlockConstruction_1.mwm" />
+                <Model BuildPercentUpperBound="0.67" File="Models\Cubes\Large\VirtualMassBlockConstruction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\VirtualMassBlockConstruction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>DE_PressureHullMk1</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>20</BuildTimeSeconds>
+            <IsAirTight>false</IsAirTight>
+            <PCU>1</PCU>
+        </Definition>
+        <Definition>
+            <Id>
+                <TypeId>CubeBlock</TypeId>
+                <SubtypeId>DE_PressureHullMk1Small</SubtypeId>
+            </Id>
+            <DisplayName>Pressure Hull Mk1</DisplayName>
+            <Description>DeepEngineers: raises the crush depth of this grid to 1,400 m. The best working pressure hull on a grid counts. Its alloy comes from iron, nickel and silicon.</Description>
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEnergy.dds</Icon>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\VirtualMassBlock.mwm</Model>
+            <Components>
+                <Component Subtype="SteelPlate" Count="4" />
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="SmallTube" Count="4" />
+                <Component Subtype="Motor" Count="1" />
+                <Component Subtype="DE_HullAlloyMk1" Count="4" />
+                <Component Subtype="SteelPlate" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="DE_HullAlloyMk1" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Right" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Top" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="1" Default="true" />
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Back" StartX="0" StartY="0" EndX="1" EndY="1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Small\VirtualMassBlockConstruction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\VirtualMassBlockConstruction_2.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>DE_PressureHullMk1</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>8</BuildTimeSeconds>
+            <IsAirTight>false</IsAirTight>
+            <PCU>1</PCU>
+        </Definition>
+        <Definition>
+            <Id>
+                <TypeId>CubeBlock</TypeId>
+                <SubtypeId>DE_PressureHullMk2Large</SubtypeId>
+            </Id>
+            <DisplayName>Pressure Hull Mk2</DisplayName>
+            <Description>DeepEngineers: raises the crush depth of this grid to 2,000 m. The best working pressure hull on a grid counts. Its alloy comes from cobalt, magnesium and silver.</Description>
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEffectiveness.dds</Icon>
+            <CubeSize>Large</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Large\decoy.mwm</Model>
+            <Components>
+                <Component Subtype="SteelPlate" Count="60" />
+                <Component Subtype="Construction" Count="20" />
+                <Component Subtype="MetalGrid" Count="20" />
+                <Component Subtype="LargeTube" Count="10" />
+                <Component Subtype="DE_HullAlloyMk2" Count="30" />
+                <Component Subtype="SteelPlate" Count="20" />
+            </Components>
+            <CriticalComponent Subtype="DE_HullAlloyMk2" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Top" StartX="0.15" StartY="0.15" EndX="0.85" EndY="0.85" />
+                <MountPoint Side="Back" StartX="0.15" StartY="0.15" EndX="0.85" EndY="0.85" />
+                <MountPoint Side="Right" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+                <MountPoint Side="Left" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+                <MountPoint Side="Bottom" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" Default="true" />
+                <MountPoint Side="Front" StartX="0.3" StartY="0.3" EndX="0.7" EndY="0.7" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.33" File="Models\Cubes\Large\decoyConstruction_1.mwm" />
+                <Model BuildPercentUpperBound="0.67" File="Models\Cubes\Large\decoyConstruction_2.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Large\decoyConstruction_3.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>DE_PressureHullMk2</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>30</BuildTimeSeconds>
+            <IsAirTight>false</IsAirTight>
+            <PCU>1</PCU>
+        </Definition>
+        <Definition>
+            <Id>
+                <TypeId>CubeBlock</TypeId>
+                <SubtypeId>DE_PressureHullMk2Small</SubtypeId>
+            </Id>
+            <DisplayName>Pressure Hull Mk2</DisplayName>
+            <Description>DeepEngineers: raises the crush depth of this grid to 2,000 m. The best working pressure hull on a grid counts. Its alloy comes from cobalt, magnesium and silver.</Description>
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEffectiveness.dds</Icon>
+            <CubeSize>Small</CubeSize>
+            <BlockTopology>TriangleMesh</BlockTopology>
+            <Size x="1" y="1" z="1" />
+            <ModelOffset x="0" y="0" z="0" />
+            <Model>Models\Cubes\Small\decoy.mwm</Model>
+            <Components>
+                <Component Subtype="SteelPlate" Count="6" />
+                <Component Subtype="Construction" Count="4" />
+                <Component Subtype="MetalGrid" Count="4" />
+                <Component Subtype="SmallTube" Count="4" />
+                <Component Subtype="DE_HullAlloyMk2" Count="6" />
+                <Component Subtype="SteelPlate" Count="2" />
+            </Components>
+            <CriticalComponent Subtype="DE_HullAlloyMk2" Index="0" />
+            <MountPoints>
+                <MountPoint Side="Right" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Left" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Top" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Bottom" StartX="0" StartY="0" EndX="1" EndY="1" Default="true" />
+                <MountPoint Side="Front" StartX="0" StartY="0" EndX="1" EndY="1" />
+                <MountPoint Side="Back" StartX="0" StartY="0" EndX="1" EndY="1" />
+            </MountPoints>
+            <BuildProgressModels>
+                <Model BuildPercentUpperBound="0.50" File="Models\Cubes\Small\decoyConstruction_1.mwm" />
+                <Model BuildPercentUpperBound="1.00" File="Models\Cubes\Small\decoyConstruction_2.mwm" />
+            </BuildProgressModels>
+            <BlockPairName>DE_PressureHullMk2</BlockPairName>
+            <MirroringY>Z</MirroringY>
+            <MirroringZ>Y</MirroringZ>
+            <EdgeType>Light</EdgeType>
+            <BuildTimeSeconds>12</BuildTimeSeconds>
+            <IsAirTight>false</IsAirTight>
+            <PCU>1</PCU>
+        </Definition>
+    </CubeBlocks>
+    <CategoryClasses>
+        <Category xsi:type="MyObjectBuilder_GuiBlockCategoryDefinition">
+            <Id>
+                <TypeId>GuiBlockCategoryDefinition</TypeId>
+                <SubtypeId>DeepEngineers</SubtypeId>
+            </Id>
+            <DisplayName>DeepEngineers</DisplayName>
+            <Name>DeepEngineers</Name>
+            <ItemIds>
+                <string>CubeBlock/DE_PressureHullMk1Large</string>
+                <string>CubeBlock/DE_PressureHullMk1Small</string>
+                <string>CubeBlock/DE_PressureHullMk2Large</string>
+                <string>CubeBlock/DE_PressureHullMk2Small</string>
+            </ItemIds>
+        </Category>
+    </CategoryClasses>
+    <BlockVariantGroups>
+        <BlockVariantGroup>
+            <Id Type="MyObjectBuilder_BlockVariantGroup" Subtype="DE_PressureHullMk1Group" />
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEnergy.dds</Icon>
+            <DisplayName>Pressure Hull Mk1</DisplayName>
+            <Description>DeepEngineers: crush depth 1,400 m.</Description>
+            <Blocks>
+                <Block Type="MyObjectBuilder_CubeBlock" Subtype="DE_PressureHullMk1Large" />
+                <Block Type="MyObjectBuilder_CubeBlock" Subtype="DE_PressureHullMk1Small" />
+            </Blocks>
+        </BlockVariantGroup>
+        <BlockVariantGroup>
+            <Id Type="MyObjectBuilder_BlockVariantGroup" Subtype="DE_PressureHullMk2Group" />
+            <Icon>Textures\GUI\Icons\Cubes\UpgradeEffectiveness.dds</Icon>
+            <DisplayName>Pressure Hull Mk2</DisplayName>
+            <Description>DeepEngineers: crush depth 2,000 m.</Description>
+            <Blocks>
+                <Block Type="MyObjectBuilder_CubeBlock" Subtype="DE_PressureHullMk2Large" />
+                <Block Type="MyObjectBuilder_CubeBlock" Subtype="DE_PressureHullMk2Small" />
+            </Blocks>
+        </BlockVariantGroup>
+    </BlockVariantGroups>
+</Definitions>

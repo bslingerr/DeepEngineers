@@ -1,0 +1,43 @@
+{
+ "created": "2026-10-12T09:15:26",
+ "key": "HKCU\\Software\\Unknown Worlds\\Subnautica",
+ "note": "Screenmanager values backed up by launcher.py at its first run (CONTRACT 1.1)",
+ "values": {
+  "Screenmanager Fullscreen mode Default_h401710285": {
+   "data": 1,
+   "type": 4
+  },
+  "Screenmanager Fullscreen mode_h3630240806": {
+   "data": 1,
+   "type": 4
+  },
+  "Screenmanager Resolution Height Default_h1380706816": {
+   "data": 1200,
+   "type": 4
+  },
+  "Screenmanager Resolution Height_h2627697771": {
+   "data": 1080,
+   "type": 4
+  },
+  "Screenmanager Resolution Use Native Default_h1405981789": {
+   "data": 1,
+   "type": 4
+  },
+  "Screenmanager Resolution Use Native_h1405027254": {
+   "data": 0,
+   "type": 4
+  },
+  "Screenmanager Resolution Width Default_h680557497": {
+   "data": 1600,
+   "type": 4
+  },
+  "Screenmanager Resolution Width_h182942802": {
+   "data": 1920,
+   "type": 4
+  },
+  "Screenmanager Stereo 3D_h1665754519": {
+   "data": 1,
+   "type": 4
+  }
+ }
+}

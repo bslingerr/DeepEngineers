@@ -1,0 +1,14 @@
+de-brush-index 1
+landmarkRadiusM 48
+deepLimitY -600
+landmark	7644	0	-1386	aurora
+brush	0	32	mushroomForest	boulder	750	-10000	-2000	5000
+brush	1	32	grandReef	boulder	750	-9600	-2000	5000
+brush	2	32	bloodKelp	pillar	750	-9200	-2000	5000
+brush	3	32	kelpForest	wall	750	-8800	-2000	5000
+brush	4	32	sparseReef	overhang	2150	-8400	-2000	5000
+brush	5	32	mountains	cave	2350	-8000	-2000	5000
+brush	6	32	safeShallows	floor	800	-7600	-2000	5000
+brush	7	32	grassyPlateaus	boulder	750	-7200	-2000	5000
+brush	8	64	underwaterIslands	wall	1550	-6800	-2000	5000
+brush	9	64	crashZone	overhang	4150	-6400	-2000	5000

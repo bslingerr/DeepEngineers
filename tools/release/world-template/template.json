@@ -1,0 +1,80 @@
+{
+ "character": {
+  "entityId": "103753901892655110",
+  "forward": [
+   0.0,
+   -1.0,
+   0.0
+  ],
+  "orientation": [
+   0.0,
+   0.7071067811865475,
+   0.7071067811865476,
+   0.0
+  ],
+  "position": [
+   -1000000.0,
+   250000.0,
+   1560050.0
+  ],
+  "up": [
+   0.0,
+   0.0,
+   1.0
+  ]
+ },
+ "files": {
+  "DE_4546B-4546d120000.vx2": "f190f4527b3ad912e4de5daa7bc26c521c3a7297b723ec9690a2f696fc370e8d",
+  "SANDBOX_0_0_0_.sbs": "4c5f7fd008af1d73482cbefaec37213d62745771aa0ff52f7dd50ba9b241615b",
+  "Sandbox.sbc": "6ce367aff92daad7e0ae672b37802005772cfaf402aacde8be80173ee5b3000a",
+  "Sandbox_config.sbc": "7f01c04fab83928f35c9c9f0f053d04f6a3750d165f47d637ef2b821a3b72a17"
+ },
+ "generator": "tools/release/make_template_world.py",
+ "mods": [
+  "2200451495",
+  "758597413",
+  "DeepEngineers.World"
+ ],
+ "planet": {
+  "centre": [
+   -1000000.0,
+   250000.0,
+   1500000.0
+  ],
+  "entityId": "-2652213890903021152",
+  "minCorner": [
+   "-1131072.5",
+   "118927.5",
+   "1368927.5"
+  ]
+ },
+ "settings": {
+  "CargoShipsEnabled": "false",
+  "DestructibleBlocks": "true",
+  "EnableCopyPaste": "true",
+  "EnableDrones": "false",
+  "EnableEconomy": "false",
+  "EnableEncounters": "false",
+  "EnableIngameScripts": "true",
+  "EnableOxygen": "true",
+  "EnableOxygenPressurization": "true",
+  "EnablePlanetaryEncounters": "false",
+  "EnableSpiders": "false",
+  "EnableSunRotation": "true",
+  "EnableWolfs": "false",
+  "EnvironmentHostility": "SAFE",
+  "GameMode": "Creative",
+  "OnlineMode": "OFFLINE",
+  "ProceduralDensity": "0",
+  "SunRotationIntervalMinutes": "20",
+  "WeatherSystem": "false"
+ },
+ "source": "DE Lab S4",
+ "sourceSha256": {
+  "SANDBOX_0_0_0_.sbs": "3c0ae6f6afd9a19fe164b1294124c97b2a0e57985db4b5c145ce09faefb1e71b",
+  "Sandbox.sbc": "4fe4ad4f8e07b9a2836baa3b7df0d5ddd643671e2537866fbe25c7bd9b5669b1",
+  "Sandbox_config.sbc": "8cd14a913154242ef1e64715f1acb2872ff6a358329b2e89f0ad2c3ae2177f08"
+ },
+ "vx2From": "DE Lab S4\\Backup\\2026-10-17 015333\\DE_4546B-4546d120000.vx2",
+ "vx2Sha256": "f190f4527b3ad912e4de5daa7bc26c521c3a7297b723ec9690a2f696fc370e8d"
+}

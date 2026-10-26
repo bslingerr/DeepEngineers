@@ -1,0 +1,12 @@
+# S8a store vectors: store keys, file names, relative paths, sculpt hash, manifest, overlay
+storekey	C:\Users\user\AppData\Roaming\SpaceEngineers\Saves\76561197960265729\DE Lab S8a	1	4c436c8c7b1b02be
+storekey	C:\SAVES\Ünïcode Wörld	1	673e26bb261ff843
+storekey		0	08e31007b58142b1
+storekey	D:\x	2	0627520c7383b819
+file	0	7	25	1	compiled-batch-0-7-25.v1.optoctrees	00000000deadbeef\drill\compiled-batch-0-7-25.v1.optoctrees	0000000000000001\window\fedcba9876543210\compiled-batch-0-7-25.v1.optoctrees
+file	-35	0	60	4294967295	compiled-batch--35-0-60.v4294967295.optoctrees	00000000deadbeef\drill\compiled-batch--35-0-60.v4294967295.optoctrees	0000000000000001\window\fedcba9876543210\compiled-batch--35-0-60.v4294967295.optoctrees
+file	12	18	12	7	compiled-batch-12-18-12.v7.optoctrees	00000000deadbeef\drill\compiled-batch-12-18-12.v7.optoctrees	0000000000000001\window\fedcba9876543210\compiled-batch-12-18-12.v7.optoctrees
+sculpt	front.png,8209,538b8c566e9e4b38;front_mat.png,8309,a954648503723fbd;back.png,8409,9a46ff9baa276602;back_mat.png,8509,9af86095a58db35b;left.png,8609,24b070ada2041cb0;left_mat.png,8709,5790385fa7ece275;right.png,8809,76aaaa535714d805;right_mat.png,8909,189514f49c6cfc94;up.png,9009,08c43a07b566d980;up_mat.png,9109,07ca610736bc8445;down.png,9209,dc04126761bb7455;down_mat.png,9309,0e5dea6c591ea064	2afef665a93afa2a
+manifest	873d4eff3347169c	451
+overlay	4546	5	1	80029ae34cfb7bbb	41020
+overlay	1	0	1	ec80506095b82ff0	20

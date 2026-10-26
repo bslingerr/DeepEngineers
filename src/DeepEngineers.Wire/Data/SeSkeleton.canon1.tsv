@@ -1,0 +1,104 @@
+# DeepEngineers canonical SE character skeleton "canon1" (CONTRACT §5.4 "Character", S5; data, no game asset).
+# Names and parent links only (no matrix, no geometry), derived 2026-10-17 from the installed SE 1.210.014 models
+# Content\Models\Characters\Astronaut\SE_astronaut.mwm and ...\Female\SE_astronaut.mwm, read in place: the 78 bones
+# both models share with the same parent name, in the male model's order (the female model lists bones 14-23 in
+# another order and has other mesh-node bones, so SE indices are never used across models: the SE plugin maps its
+# model's bones to these rows by name). Parents precede children. 81 bones per model, 78 shared; blend indices of
+# both LOD0 models stay <= 76, so no vertex weights a non-shared bone.
+# Pins: skeleton text = one line "bone <index> <seBone> <parent>\n" per row (columns 1-3 only, parent -1 for the
+# root), FNV-1a 64 = 0x995765282e7d4f1d; it is the "skeleton canon1 78 ..." line of the S5 mirror conventions
+# (CONTRACT §5.4, conventions hash 0x31dfd6f9befdef5d). Columns 5-7 are Subnautica retarget hints, NOT in the hash:
+# they may be refined after the S5 real run without a re-pin.
+# Columns (tab-separated):
+#   index    canonical bone index (C1 bone order, SkinnedBind order, vertex boneIndex values)
+#   seBone   SE bone name (MyModelBone.Name)
+#   parent   canonical index of the parent, -1 = root
+#   seParent SE name of the parent, - = root
+#   human    Unity HumanBodyBones enum name for the humanoid retarget (HumanTrait.BoneName[(int)value] at run time), - = none
+#   role     root: no retarget, the body transform drives it | human: retargeted | twist: forearm twist, keeps its rest
+#            local transform in a retarget | follow: unmapped deforming bone, keeps its rest local transform in a
+#            retarget | dummy: attachment point (camera, lights, weapon pins, jetpack), rest local transform in a retarget
+#   snBone   Subnautica player-rig bone for the generic retarget path (- = no counterpart: root, dummies, eyes, lids,
+#            forearm twists). Filled 2026-10-17 from the S5-2a real run's "s5.rig" row (player_view, generic rig,
+#            113 transforms: hips, spine_1..3, chest, neck, head_rig, clav/shoulder/elbow/hand_L|R, thigh/calf/ankle,
+#            toe_L_rig / toe_R, fingers hand_<L|R>_<thumb|point|midl|ring|pinky>_<base|mid|tip[_rig]>). Outside the
+#            skeleton hash (columns 1-3), so no re-pin; SE Spine1 stays unmapped (SN has four spine bones, SE six).
+index	seBone	parent	seParent	human	role	snBone
+0	RootNode	-1	-	-	root	-
+1	SE_main_root	0	RootNode	-	root	-
+2	SE_RigPelvis	1	SE_main_root	Hips	human	hips
+3	SE_RigLThigh	2	SE_RigPelvis	LeftUpperLeg	human	thigh_L
+4	SE_RigLCalf	3	SE_RigLThigh	LeftLowerLeg	human	calf_L
+5	SE_RigLFoot	4	SE_RigLCalf	LeftFoot	human	ankle_L
+6	SE_RigLR_Foot_tip1	5	SE_RigLFoot	LeftToes	human	toe_L_rig
+7	SE_RigSpine1	2	SE_RigPelvis	-	follow	-
+8	SE_RigSpine2	7	SE_RigSpine1	Spine	human	spine_1
+9	SE_RigSpine3	8	SE_RigSpine2	-	follow	spine_2
+10	SE_RigSpine4	9	SE_RigSpine3	Chest	human	spine_3
+11	SE_RigRibcage	10	SE_RigSpine4	UpperChest	human	chest
+12	SE_RigNeck	11	SE_RigRibcage	Neck	human	neck
+13	SE_RigHead	12	SE_RigNeck	Head	human	head_rig
+14	HeadDummy	13	SE_RigHead	-	dummy	-
+15	LeftLightDummy	13	SE_RigHead	-	dummy	-
+16	RightLightDummy	13	SE_RigHead	-	dummy	-
+17	SE_RigHelmetGlassBone	13	SE_RigHead	-	dummy	-
+18	SE_RigL_Eye	13	SE_RigHead	LeftEye	human	-
+19	SE_RigL_EyeLidUpper	13	SE_RigHead	-	follow	-
+20	SE_RigL_EyeLidLower	13	SE_RigHead	-	follow	-
+21	SE_RigR_Eye	13	SE_RigHead	RightEye	human	-
+22	SE_RigR_EyeLidUpper	13	SE_RigHead	-	follow	-
+23	SE_RigR_EyeLidLower	13	SE_RigHead	-	follow	-
+24	SE_RigLCollarbone	11	SE_RigRibcage	LeftShoulder	human	clav_L
+25	SE_RigLUpperarm	24	SE_RigLCollarbone	LeftUpperArm	human	shoulder_L
+26	SE_RigLForearm1	25	SE_RigLUpperarm	LeftLowerArm	human	elbow_L
+27	SE_RigLForearm2	26	SE_RigLForearm1	-	twist	-
+28	SE_RigLForearm3	27	SE_RigLForearm2	-	twist	-
+29	SE_RigLPalm	28	SE_RigLForearm3	LeftHand	human	hand_L
+30	SE_RigL_Thumb_1	29	SE_RigLPalm	LeftThumbProximal	human	hand_L_thumb_base
+31	SE_RigL_Thumb_2	30	SE_RigL_Thumb_1	LeftThumbIntermediate	human	hand_L_thumb_mid
+32	SE_RigL_Thumb_3	31	SE_RigL_Thumb_2	LeftThumbDistal	human	hand_L_thumb_tip
+33	SE_RigL_Index_1	29	SE_RigLPalm	LeftIndexProximal	human	hand_L_point_base
+34	SE_RigL_Index_2	33	SE_RigL_Index_1	LeftIndexIntermediate	human	hand_L_point_mid
+35	SE_RigL_Index_3	34	SE_RigL_Index_2	LeftIndexDistal	human	hand_L_point_tip
+36	SE_RigL_Middle_1	29	SE_RigLPalm	LeftMiddleProximal	human	hand_L_midl_base
+37	SE_RigL_Middle_2	36	SE_RigL_Middle_1	LeftMiddleIntermediate	human	hand_L_midl_mid
+38	SE_RigL_Middle_3	37	SE_RigL_Middle_2	LeftMiddleDistal	human	hand_L_midl_tip
+39	SE_RigL_Ring_1	29	SE_RigLPalm	LeftRingProximal	human	hand_L_ring_base
+40	SE_RigL_Ring_2	39	SE_RigL_Ring_1	LeftRingIntermediate	human	hand_L_ring_mid
+41	SE_RigL_Ring_3	40	SE_RigL_Ring_2	LeftRingDistal	human	hand_L_ring_tip
+42	SE_RigL_Little_1	29	SE_RigLPalm	LeftLittleProximal	human	hand_L_pinky_base
+43	SE_RigL_Little_2	42	SE_RigL_Little_1	LeftLittleIntermediate	human	hand_L_pinky_mid
+44	SE_RigL_Little_3	43	SE_RigL_Little_2	LeftLittleDistal	human	hand_L_pinky_tip
+45	SE_RigL_Weapon_pin	29	SE_RigLPalm	-	dummy	-
+46	MagazineDummy_01	45	SE_RigL_Weapon_pin	-	dummy	-
+47	SE_RigRCollarbone	11	SE_RigRibcage	RightShoulder	human	clav_R
+48	SE_RigRUpperarm	47	SE_RigRCollarbone	RightUpperArm	human	shoulder_R
+49	SE_RigRForearm1	48	SE_RigRUpperarm	RightLowerArm	human	elbow_R
+50	SE_RigRForearm2	49	SE_RigRForearm1	-	twist	-
+51	SE_RigRForearm3	50	SE_RigRForearm2	-	twist	-
+52	SE_RigRPalm	51	SE_RigRForearm3	RightHand	human	hand_R
+53	SE_RigR_Thumb_1	52	SE_RigRPalm	RightThumbProximal	human	hand_R_thumb_base
+54	SE_RigR_Thumb_2	53	SE_RigR_Thumb_1	RightThumbIntermediate	human	hand_R_thumb_mid
+55	SE_RigR_Thumb_3	54	SE_RigR_Thumb_2	RightThumbDistal	human	hand_R_thumb_tip_rig
+56	SE_RigR_Index_1	52	SE_RigRPalm	RightIndexProximal	human	hand_R_point_base
+57	SE_RigR_Index_2	56	SE_RigR_Index_1	RightIndexIntermediate	human	hand_R_point_mid
+58	SE_RigR_Index_3	57	SE_RigR_Index_2	RightIndexDistal	human	hand_R_point_tip_rig
+59	SE_RigR_Middle_1	52	SE_RigRPalm	RightMiddleProximal	human	hand_R_midl_base
+60	SE_RigR_Middle_2	59	SE_RigR_Middle_1	RightMiddleIntermediate	human	hand_R_midl_mid
+61	SE_RigR_Middle_3	60	SE_RigR_Middle_2	RightMiddleDistal	human	hand_R_midl_tip_rig
+62	SE_RigR_Ring_1	52	SE_RigRPalm	RightRingProximal	human	hand_R_ring_base
+63	SE_RigR_Ring_2	62	SE_RigR_Ring_1	RightRingIntermediate	human	hand_R_ring_mid
+64	SE_RigR_Ring_3	63	SE_RigR_Ring_2	RightRingDistal	human	hand_R_ring_tip_rig
+65	SE_RigR_Little_1	52	SE_RigRPalm	RightLittleProximal	human	hand_R_pinky_base
+66	SE_RigR_Little_2	65	SE_RigR_Little_1	RightLittleIntermediate	human	hand_R_pinky_mid
+67	SE_RigR_Little_3	66	SE_RigR_Little_2	RightLittleDistal	human	hand_R_pinky_tip_rig
+68	SE_RigR_Weapon_pin	52	SE_RigRPalm	-	dummy	-
+69	MagazineDummy_02	68	SE_RigR_Weapon_pin	-	dummy	-
+70	SE_RigRibcageBone001	11	SE_RigRibcage	-	follow	-
+71	BackJetpackDummy_01	70	SE_RigRibcageBone001	-	dummy	-
+72	FrontJetpackDummy_01	11	SE_RigRibcage	-	dummy	-
+73	SE_RigRThigh	2	SE_RigPelvis	RightUpperLeg	human	thigh_R
+74	SE_RigRCalf	73	SE_RigRThigh	RightLowerLeg	human	calf_R
+75	SE_RigRFoot	74	SE_RigRCalf	RightFoot	human	ankle_R
+76	SE_RigRR_Foot_tip1	75	SE_RigRFoot	RightToes	human	toe_R
+77	ThirdCameraDummy	1	SE_main_root	-	dummy	-

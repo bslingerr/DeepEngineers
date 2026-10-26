@@ -1,0 +1,281 @@
+# S8a biomes and spawns vectors (tools/planet/s8a_biomes.py vectors); read by tests/DeepEngineers.Wire.Tests/S8aBiomesTests.cs
+line	biome.names	format biome.names 0 safeShallows, 1 grassyPlateaus, 2 kelpForest, 3 dunes, 4 bloodKelp, 5 sparseReef, 6 mountains, 7 void, 8 mushroomForest, 9 grandReef, 10 underwaterIslands, 11 crashZone, 12 lostRiver_Canyon; 255 none (Subnautica's own answer)
+line	biome.rule	format biome.rule cameraBiome from the window column under the camera: the planet's biome map (the material map's G, PlanetMaps Biome) at the surface point when it holds 1..13: G - 1; else by the surface material: Grass 6; Sand_02 0 when the seabed is <= 60 m deep, else 1; Stone_01 2; Stone_02 3; Stone_03 4; Stone_04 5; Stone_05 or deeper than 1000 m 7; GetBiome(p) outside the crater box returns names[cameraBiome] within BiomeRadiusM of the camera, else void
+line	convert.material	format convert.material SE voxel material subtype -> SN block type: Sand_02 1, Stone_01 111, Stone_02 150, Stone_03 190, Stone_04 141, Stone_05 84, Grass 219, Iron_02 95, Nickel_01 96, Silicon_01 107, Cobalt_01 108, Magnesium_01 117, Silver_01 118, Gold_01 119, Platinum_01 121, Uraninite_01 122, any other 84; names resolved to indices once per session
+line	spawn.place	format spawn.place window columns only, keyed by fnv1a64(chartKey, bx, bz, column, row index); seabed = the top solid voxel of the served file; within RadiusM of the camera, gone beyond DespawnM; MakeEntityTransient, never saved; moved by -T on a chart step
+line	spawn.table	format spawn.table per hectare of seabed by depth d, Subnautica TechTypes: d <= 60 Peeper 3 Bladderfish 3 Boomerang 2 BluePalm 6 PurpleTentacle 4 CoralShellPlate 3; d <= 200 Hoopfish 3 Spadefish 2 Reginald 2 RedGrass 8 PurpleFan 3 SmallKoosh 2; d <= 500 Eyeye 2 HoleFish 2 Mesmer 1 BloodGrass 6; d <= 1000 Spinefish 2 GarryFish 1 BloodGrass 2; deeper none
+name	0	safeShallows
+name	1	grassyPlateaus
+name	2	kelpForest
+name	3	dunes
+name	4	bloodKelp
+name	5	sparseReef
+name	6	mountains
+name	7	void
+name	8	mushroomForest
+name	9	grandReef
+name	10	underwaterIslands
+name	11	crashZone
+name	12	lostRiver_Canyon
+material	Sand_02	1
+material	Stone_01	111
+material	Stone_02	150
+material	Stone_03	190
+material	Stone_04	141
+material	Stone_05	84
+material	Grass	219
+material	Iron_02	95
+material	Nickel_01	96
+material	Silicon_01	107
+material	Cobalt_01	108
+material	Magnesium_01	117
+material	Silver_01	118
+material	Gold_01	119
+material	Platinum_01	121
+material	Uraninite_01	122
+material	Basalt	84
+material	Ice_01	84
+material		84
+biome	Sand_02	10.0	0
+biome	Sand_02	60.0	0
+biome	Sand_02	60.5	1
+biome	Sand_02	200.0	1
+biome	Sand_02	999.0	1
+biome	Sand_02	1000.0	1
+biome	Sand_02	1000.5	7
+biome	Sand_02	1400.0	7
+biome	Stone_01	10.0	2
+biome	Stone_01	60.0	2
+biome	Stone_01	60.5	2
+biome	Stone_01	200.0	2
+biome	Stone_01	999.0	2
+biome	Stone_01	1000.0	2
+biome	Stone_01	1000.5	7
+biome	Stone_01	1400.0	7
+biome	Stone_02	10.0	3
+biome	Stone_02	60.0	3
+biome	Stone_02	60.5	3
+biome	Stone_02	200.0	3
+biome	Stone_02	999.0	3
+biome	Stone_02	1000.0	3
+biome	Stone_02	1000.5	7
+biome	Stone_02	1400.0	7
+biome	Stone_03	10.0	4
+biome	Stone_03	60.0	4
+biome	Stone_03	60.5	4
+biome	Stone_03	200.0	4
+biome	Stone_03	999.0	4
+biome	Stone_03	1000.0	4
+biome	Stone_03	1000.5	7
+biome	Stone_03	1400.0	7
+biome	Stone_04	10.0	5
+biome	Stone_04	60.0	5
+biome	Stone_04	60.5	5
+biome	Stone_04	200.0	5
+biome	Stone_04	999.0	5
+biome	Stone_04	1000.0	5
+biome	Stone_04	1000.5	7
+biome	Stone_04	1400.0	7
+biome	Stone_05	10.0	7
+biome	Stone_05	60.0	7
+biome	Stone_05	60.5	7
+biome	Stone_05	200.0	7
+biome	Stone_05	999.0	7
+biome	Stone_05	1000.0	7
+biome	Stone_05	1000.5	7
+biome	Stone_05	1400.0	7
+biome	Grass	10.0	6
+biome	Grass	60.0	6
+biome	Grass	60.5	6
+biome	Grass	200.0	6
+biome	Grass	999.0	6
+biome	Grass	1000.0	6
+biome	Grass	1000.5	7
+biome	Grass	1400.0	7
+biome	Iron_02	10.0	7
+biome	Iron_02	60.0	7
+biome	Iron_02	60.5	7
+biome	Iron_02	200.0	7
+biome	Iron_02	999.0	7
+biome	Iron_02	1000.0	7
+biome	Iron_02	1000.5	7
+biome	Iron_02	1400.0	7
+biome	Nickel_01	10.0	7
+biome	Nickel_01	60.0	7
+biome	Nickel_01	60.5	7
+biome	Nickel_01	200.0	7
+biome	Nickel_01	999.0	7
+biome	Nickel_01	1000.0	7
+biome	Nickel_01	1000.5	7
+biome	Nickel_01	1400.0	7
+biome	Silicon_01	10.0	7
+biome	Silicon_01	60.0	7
+biome	Silicon_01	60.5	7
+biome	Silicon_01	200.0	7
+biome	Silicon_01	999.0	7
+biome	Silicon_01	1000.0	7
+biome	Silicon_01	1000.5	7
+biome	Silicon_01	1400.0	7
+biome	Cobalt_01	10.0	7
+biome	Cobalt_01	60.0	7
+biome	Cobalt_01	60.5	7
+biome	Cobalt_01	200.0	7
+biome	Cobalt_01	999.0	7
+biome	Cobalt_01	1000.0	7
+biome	Cobalt_01	1000.5	7
+biome	Cobalt_01	1400.0	7
+biome	Magnesium_01	10.0	7
+biome	Magnesium_01	60.0	7
+biome	Magnesium_01	60.5	7
+biome	Magnesium_01	200.0	7
+biome	Magnesium_01	999.0	7
+biome	Magnesium_01	1000.0	7
+biome	Magnesium_01	1000.5	7
+biome	Magnesium_01	1400.0	7
+biome	Silver_01	10.0	7
+biome	Silver_01	60.0	7
+biome	Silver_01	60.5	7
+biome	Silver_01	200.0	7
+biome	Silver_01	999.0	7
+biome	Silver_01	1000.0	7
+biome	Silver_01	1000.5	7
+biome	Silver_01	1400.0	7
+biome	Gold_01	10.0	7
+biome	Gold_01	60.0	7
+biome	Gold_01	60.5	7
+biome	Gold_01	200.0	7
+biome	Gold_01	999.0	7
+biome	Gold_01	1000.0	7
+biome	Gold_01	1000.5	7
+biome	Gold_01	1400.0	7
+biome	Platinum_01	10.0	7
+biome	Platinum_01	60.0	7
+biome	Platinum_01	60.5	7
+biome	Platinum_01	200.0	7
+biome	Platinum_01	999.0	7
+biome	Platinum_01	1000.0	7
+biome	Platinum_01	1000.5	7
+biome	Platinum_01	1400.0	7
+biome	Uraninite_01	10.0	7
+biome	Uraninite_01	60.0	7
+biome	Uraninite_01	60.5	7
+biome	Uraninite_01	200.0	7
+biome	Uraninite_01	999.0	7
+biome	Uraninite_01	1000.0	7
+biome	Uraninite_01	1000.5	7
+biome	Uraninite_01	1400.0	7
+biome	Basalt	10.0	7
+biome	Basalt	60.0	7
+biome	Basalt	60.5	7
+biome	Basalt	200.0	7
+biome	Basalt	999.0	7
+biome	Basalt	1000.0	7
+biome	Basalt	1000.5	7
+biome	Basalt	1400.0	7
+biomemap	0	Sand_02	30.0	0
+biomemap	1	Stone_05	30.0	0
+biomemap	9	Sand_02	30.0	8
+biomemap	13	-	30.0	12
+biomemap	14	Grass	20.0	6
+biomemap	8	Iron_02	2500.0	7
+biomemap	255	Stone_01	70.0	2
+biomemap	0	-	10.0	255
+biomemap	12	Stone_04	1500.0	11
+expect	0	30.0	1
+expect	0	1200.0	1
+expect	1	30.0	1
+expect	1	1200.0	1
+expect	2	30.0	111
+expect	2	1200.0	111
+expect	3	30.0	150
+expect	3	1200.0	150
+expect	4	30.0	190
+expect	4	1200.0	190
+expect	5	30.0	141
+expect	5	1200.0	141
+expect	6	30.0	219
+expect	6	1200.0	219
+expect	7	30.0	-1
+expect	7	1200.0	-1
+expect	8	30.0	-1
+expect	8	1200.0	-1
+expect	9	30.0	-1
+expect	9	1200.0	-1
+expect	10	30.0	-1
+expect	10	1200.0	-1
+expect	11	30.0	-1
+expect	11	1200.0	-1
+expect	12	30.0	-1
+expect	12	1200.0	-1
+expect	255	30.0	-1
+expect	255	1200.0	-1
+crater	0.0	0.0	1
+crater	-2048.0	-2048.0	1
+crater	-2048.5	0.0	0
+crater	2111.9	2111.9	1
+crater	2112.0	0.0	0
+crater	5000.0	-40.0	0
+crater	-7000.0	7000.0	0
+crater	2047.0	-2049.0	0
+window	0	0	0
+window	25	25	0
+window	26	0	1
+window	-1	10	1
+window	-35	-35	1
+window	-36	0	0
+window	60	61	0
+window	40	40	1
+biomeat	3000.0	-50.0	0.0	3000.0	-10.0	0.0	2	kelpForest
+biomeat	3000.0	-50.0	0.0	3300.0	-10.0	0.0	2	void
+biomeat	0.0	-50.0	0.0	0.0	-10.0	0.0	2	-
+biomeat	3000.0	-50.0	0.0	3000.0	-10.0	0.0	255	-
+biomeat	3000.0	-50.0	0.0	3000.0	150.0	0.0	6	mountains
+biomeat	-2100.0	-5.0	9.0	-2100.0	-5.0	9.0	0	safeShallows
+band	-5.0	0
+band	0.0	0
+band	60.0	0
+band	60.01	1
+band	200.0	1
+band	200.5	2
+band	500.0	2
+band	999.9	3
+band	1000.0	3
+band	1000.01	-1
+band	3000.0	-1
+density	0	21.0
+density	1	20.0
+density	2	11.0
+density	3	5.0
+key	0000000000000000	0	0	0	0	81d23fd7003c2305	0.7507651941562489	0.1630859375	0.50390625	235.546875	2.8705882352941177
+key	1234abcd5678ef01	30	-3	12345	7	5b39ef06ea9e9887	0.13055100612550596	0.24609375	0.0751953125	308.671875	6.752941176470588
+key	ffffffffffffffff	-35	60	25599	18	2f89790bc96ed03b	0.8232680768496269	0.5234375	0.6396484375	252.421875	6.188235294117646
+key	0fedcba987654321	-20	40	160	3	dd4b26ad2e281109	0.8376348597152864	0.251953125	0.8662109375	338.203125	3.411764705882353
+key	00000000deadbeef	26	0	1	12	2a6fb1e4b239952c	0.07985355452487708	0.53125	0.6142578125	239.0625	3.6941176470588237
+plan	0	slope	1234abcd5678ef01	30	-3	1.0	-	32	96f2df5bc4873892	0,0,0,0,1,3,1,3,4,9,4,7,0,0,0,0,0,0,0
+planpt	0	0	a4fbf90235a568af	5	1930	2762.5888671875	-33.35	-2515.74609375	-33.25	135.703125
+planpt	0	1	6199bf795f485a07	9	2761	2793.55078125	-62.35	-2510.826171875	-62.25	169.453125
+planpt	0	2	6476d451ae310c10	8	3093	2805.3310546875	-69.05294117647058	-2508.59765625	-73.5	253.828125
+planpt	0	3	12b49fbbf848c550	9	3419	2811.0458984375	-79.6	-2506.396484375	-79.5	320.625
+planpt	0	4	98653c6f960432aa	10	3980	2892.7265625	-151.6	-2503.9658203125	-151.5	40.078125
+planpt	0	5	ae17b72c0910df5c	11	4453	2885.4501953125	-146.6	-2500.7314453125	-146.5	327.65625
+plan	1	slope	1234abcd5678ef01	30	-3	10.0	-	510	9d9562a1c9863123	8,8,7,19,10,12,59,49,49,167,66,50,2,4,0,0,0,0,0
+planpt	1	0	a2b39ef09e68546b	3	1	2753.544921875	-20.975	-2527.984375	-20.875	334.6875
+planpt	1	1	68e8449903f5a561	3	11	2763.9892578125	-29.725	-2527.740234375	-29.625	27.421875
+planpt	1	2	f211f14ff7c1c6c9	0	16	2768.6904296875	-26.658823529411766	-2527.0576171875	-34.0	175.078125
+planpt	1	3	10e3e5ed519db941	10	50	2802.2421875	-63.85	-2527.755859375	-63.75	187.03125
+planpt	1	4	d435aedbdc2f6b1f	5	179	2771.955078125	-37.1	-2526.2392578125	-37.0	152.578125
+planpt	1	5	7ebeed6f682ee727	9	231	2823.4619140625	-82.6	-2526.3212890625	-82.5	2.109375
+plan	2	deep	0fedcba987654321	-20	40	1.0	-	7	ec5890eb0e4207ca	0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,3,0,2
+planpt	2	0	d1454f4df4704b6f	16	4430	-5137.3076171875	-887.1058823529412	4379.3701171875	-890.0	252.421875
+planpt	2	1	7ebd9154ff331c41	13	6880	-5247.1328125	-443.08235294117645	4395.27734375	-450.0	74.53125
+planpt	2	2	897e2c000304fab1	18	9646	-5201.134765625	-634.1	4412.1328125	-634.0	170.859375
+planpt	2	3	fb31bb785755be16	15	10881	-5246.8134765625	-454.1	4420.71484375	-454.0	358.59375
+planpt	2	4	e1595c603186a20a	16	13141	-5226.4736328125	-527.9294117647058	4434.212890625	-534.0	332.578125
+planpt	2	5	52f20c6a432c2d7d	18	16501	-5226.4541015625	-534.1	4455.9150390625	-534.0	79.453125
+plan	3	holes	00000000deadbeef	26	0	1.0	3,5	25	3ce5c2342e9e57b1	2,4,3,0,9,0,1,1,0,4,1,0,0,0,0,0,0,0,0
+planpt	3	0	3fbef91dcbcdda0e	4	235	2187.7548828125	-30.35	-2046.8408203125	-30.25	196.171875
+planpt	3	1	94d56cec0e7546f3	4	1034	2186.6142578125	-31.6	-2041.9365234375	-31.5	201.796875
+planpt	3	2	92598e4f219ae81a	0	2332	2204.8837890625	-27.429411764705883	-2033.3095703125	-33.5	164.53125
+planpt	3	3	1cb8d74d2885fabe	1	2796	2188.9912109375	-26.86176470588235	-2030.583984375	-34.25	189.140625
+planpt	3	4	8adc03f94a2518da	4	3468	2220.3798828125	-35.35	-2026.888671875	-35.25	353.671875
+planpt	3	5	931118afe7024abd	4	3606	2198.1015625	-35.6	-2025.935546875	-35.5	284.0625

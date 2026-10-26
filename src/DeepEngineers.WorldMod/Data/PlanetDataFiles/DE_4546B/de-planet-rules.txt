@@ -1,0 +1,6 @@
+de-planet-rules 1
+# Rows / layout_4546b.json went to a third of its
+# shares. The table is code, not a key of this file, so this file exists to change the rules hash the window and chart
+# keys fold in: a terrain store made under the old table is never served again (the crater tiles regenerate on the next load).
+crater.cubeRule=true
+crater.depositsPerKm2=0

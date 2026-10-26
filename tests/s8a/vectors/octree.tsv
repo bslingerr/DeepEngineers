@@ -1,0 +1,14 @@
+# S8a octree writer vectors (tools/sn-octrees/sn_octree_write.py --vectors); kind seed nodes bytes fnv1a64
+# raster: synthetic_raster(kind, seed); encode by the engine's rules; read by S8aOctreeVectorTests (C#)
+random	1	37377	149508	b0ab47d6f8663766
+random	7	37337	149348	78124f650459857c
+random	4546	37321	149284	ee0a49629da0b18d
+blocky4	2	585	2340	f99ae774aa4150a4
+blocky4	99	585	2340	28bee8dbef62dc1c
+blocky8	3	73	292	22c24d39a4ca3358
+blocky8	1234	73	292	383466f7a3d56b27
+terrain	0	11737	46948	0d97bb73f6b7d326
+terrain	17	11737	46948	2d5c98015f8f3859
+terrain	2025	11729	46916	603b3c3ac2bc323a
+uniform	5	1	4	bd2955fae0999b1e
+uniform	6	1	4	4d25767f9dce13f5

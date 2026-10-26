@@ -1,0 +1,59 @@
+# DeepEngineers release allowlist: every file the release folder may hold (check 1 of
+# tools/release/check_release.py). Any other file fails the lint.
+#
+# Format: <path relative to the release folder> [required] [sha256=<hex>] [build=<path relative to the repository>]
+# path exact, or a glob: * within one folder, ** across folders, ? one character (case-insensitive)
+# required the file must be present
+# build= the file must equal that repository file byte for byte; "dir/** build=src/x/**" maps the rest of the
+# path. The plugins must equal the RELEASE-FLAVOUR build (build.ps1 -Flavor release; DEEPENG_RELEASE):
+# a dev build in the release folder fails here.
+# Layout: tools/release/make_release.py (run it with --se-bin/--sn-bin pointing at bin\ReleaseFlavor\Release\...).
+
+# --- entry points (tools/release/root) -------------------------------------------------------------------------------
+Install.cmd required build=tools/release/root/Install.cmd
+install.ps1 required build=tools/release/root/install.ps1
+Play.cmd required build=tools/release/root/Play.cmd
+play.ps1 required build=tools/release/root/play.ps1
+Preset.cmd required build=tools/release/root/Preset.cmd
+Uninstall.cmd required build=tools/release/root/Uninstall.cmd
+
+# --- documents --------------------------------------------------------------------------------------------------------
+README.md required build=docs/README.md
+NOTICE.md required build=NOTICE.md
+UNINSTALL.md required build=docs/install/UNINSTALL.md
+release.json required
+SHA256SUMS.txt required
+
+# --- the two plugins (release flavour, no pdb) ------------------------------------------------------------------------
+plugins/plugin.dll required build=src/DeepEngineers.SE/bin/ReleaseFlavor/Release/net48/plugin.dll
+plugins/DeepEngineers.Wire.dll required build=src/DeepEngineers.SE/bin/ReleaseFlavor/Release/net48/DeepEngineers.Wire.dll
+plugins/DeepEngineers.SN.dll required build=src/DeepEngineers.SN/bin/ReleaseFlavor/Release/net472/DeepEngineers.SN.dll
+
+# --- launcher and installer (Python 3.10 stdlib) -----------------------------------------------------------------------
+launcher/launcher.py required build=src/DeepEngineers.Launcher/launcher.py
+launcher/launcher_paths.py required build=src/DeepEngineers.Launcher/launcher_paths.py
+launcher/launcher_release.py required build=src/DeepEngineers.Launcher/launcher_release.py
+launcher/launcher_s8.py required build=src/DeepEngineers.Launcher/launcher_s8.py
+launcher/de_install.py required build=src/DeepEngineers.Launcher/de_install.py
+launcher/de_steam.py required build=src/DeepEngineers.Launcher/de_steam.py
+launcher/de_pins.py required build=src/DeepEngineers.Launcher/de_pins.py
+launcher/de_update.py required build=src/DeepEngineers.Launcher/de_update.py
+launcher/make_scenario_world.py required build=tools/worldmod/make_scenario_world.py
+launcher/layout_py.py required build=tests/wire/layout_py.py
+launcher/section_py.py required build=tests/wire/section_py.py
+
+# --- world mod and template world (data only, generated in the repository) ---------------------------------------------
+worldmod/DeepEngineers.World/metadata.mod required build=src/DeepEngineers.WorldMod/metadata.mod
+# S15: the sea's own material and its generated texture (tools/s15/gen_water_texture.py; no game asset)
+worldmod/DeepEngineers.World/Data/TransparentMaterials.sbc required build=src/DeepEngineers.WorldMod/Data/TransparentMaterials.sbc
+worldmod/DeepEngineers.World/Textures/DE_4546B_Water.dds required build=src/DeepEngineers.WorldMod/Textures/DE_4546B_Water.dds
+worldmod/DeepEngineers.World/Textures/DE_4546B_WaterFar.dds required build=src/DeepEngineers.WorldMod/Textures/DE_4546B_WaterFar.dds
+worldmod/DeepEngineers.World/** build=src/DeepEngineers.WorldMod/**
+world-template/DeepEngineers/Sandbox.sbc required build=tools/release/world-template/DeepEngineers/Sandbox.sbc
+world-template/DeepEngineers/* build=tools/release/world-template/DeepEngineers/*
+
+# --- the Freedom host save (tools/release/hostsave/slot): a fresh save, installed into a free Subnautica slot ------------
+hostsave/slot/gameinfo.json required build=tools/release/hostsave/slot/gameinfo.json
+hostsave/slot/global-objects.bin required build=tools/release/hostsave/slot/global-objects.bin
+hostsave/slot/scene-objects.bin required build=tools/release/hostsave/slot/scene-objects.bin
+hostsave/slot/screenshot.jpg required build=tools/release/hostsave/slot/screenshot.jpg

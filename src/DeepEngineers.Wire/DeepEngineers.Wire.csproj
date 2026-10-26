@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Shared between the Space Engineers plugin (net48) and the Subnautica plugin (net472, Mono):
+ protocol layout, seqlock/ring helpers, WireMath, site constants. No game references, no Unity, no VRage. -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>DeepEngineers.Wire</AssemblyName>
+    <RootNamespace>DeepEngineers.Wire</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <!-- S9 release flavour (the plugins' -p:DeepEngFlavor=release flows here through the project reference): the same
+ code, built into bin\ReleaseFlavor\ and obj\ReleaseFlavor\ with no pdb and the source root mapped, so the copy
+ shipped beside each plugin carries no machine path. -->
+  <PropertyGroup Condition="'$(DeepEngFlavor)' == 'release'">
+    <OutputPath>bin\ReleaseFlavor\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\ReleaseFlavor\$(Configuration)\</IntermediateOutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..'))=/_/DeepEngineers</PathMap>
+  </PropertyGroup>
+</Project>

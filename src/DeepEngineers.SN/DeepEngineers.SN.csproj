@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Subnautica BepInEx 5 plugin, deployed to <Subnautica>\BepInEx\plugins\DeepEngineers\.
+ The visual/ecosystem host side: ghost player, camera follow, mirrored grids, proxies, damage forwarding, window role. -->
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>DeepEngineers.SN</AssemblyName>
+    <RootNamespace>DeepEngineers.SN</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <!-- S9 build flavour: dev (default) or release (build.ps1 -Flavor release, or -p:DeepEngFlavor=release): defines
+ DEEPENG_RELEASE (BuildFlavor.cs), builds into bin\ReleaseFlavor\ and obj\ReleaseFlavor\, no pdb, source root mapped
+ (no machine path in the DLL). Same switch as the SE plugin. -->
+  <PropertyGroup Condition="'$(DeepEngFlavor)' == 'release'">
+    <DefineConstants>$(DefineConstants);DEEPENG_RELEASE</DefineConstants>
+    <OutputPath>bin\ReleaseFlavor\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\ReleaseFlavor\$(Configuration)\</IntermediateOutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..'))=/_/DeepEngineers</PathMap>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- Wire.dll is copied next to the plugin: BepInEx resolves dependencies from the plugin folder. -->
+    <ProjectReference Include="..\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+
+  <!-- S5: the canonical SE character skeleton canon1 (CONTRACT §5.4 "Character"; names and parent links, no game asset),
+ embedded so the character mirror reads the same file Wire pins (CanonSkeleton.Embedded). -->
+  <ItemGroup>
+    <EmbeddedResource Include="..\DeepEngineers.Wire\Data\SeSkeleton.canon1.tsv" LogicalName="DeepEngineers.SN.SeSkeleton.canon1.tsv" />
+  </ItemGroup>
+
+  <!-- Game and loader assemblies: referenced from the install, never copied (Private=false). -->
+  <ItemGroup>
+    <Reference Include="UnityEngine"><HintPath>$(SubnauticaManaged)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(SubnauticaManaged)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(SubnauticaManaged)\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.InputLegacyModule"><HintPath>$(SubnauticaManaged)\UnityEngine.InputLegacyModule.dll</HintPath><Private>false</Private></Reference>
+    <!-- S5a: the Player animator's parameters (Animator, AnimatorClipInfo) for the first-person arms -->
+    <Reference Include="UnityEngine.AnimationModule"><HintPath>$(SubnauticaManaged)\UnityEngine.AnimationModule.dll</HintPath><Private>false</Private></Reference>
+    <!-- S7 (B2 hook): the effect player's particle systems (ParticleSystem.Emit/Play/Stop, emission rate; CONTRACT §5.4 "S7 conventions") -->
+    <Reference Include="UnityEngine.ParticleSystemModule"><HintPath>$(SubnauticaManaged)\UnityEngine.ParticleSystemModule.dll</HintPath><Private>false</Private></Reference>
+    <!-- S1: ScreenCapture.CaptureScreenshot (in-game captures, C10 / de.capture) -->
+    <Reference Include="UnityEngine.ScreenCaptureModule"><HintPath>$(SubnauticaManaged)\UnityEngine.ScreenCaptureModule.dll</HintPath><Private>false</Private></Reference>
+    <!-- S2: the calibration pattern canvas (Canvas: UIModule; Image: UnityEngine.UI), the Input System device state
+ (Unity.InputSystem 1.4.4) and the audio mix (FMODUnity: RuntimeManager.MuteAllEvents, FMOD.Studio.Bus) -->
+    <Reference Include="UnityEngine.UIModule"><HintPath>$(SubnauticaManaged)\UnityEngine.UIModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.UI"><HintPath>$(SubnauticaManaged)\UnityEngine.UI.dll</HintPath><Private>false</Private></Reference>
+    <!-- S16 hook: the depth compass's and the Seamoth HUD's text fields (TextMeshProUGUI) driven from the C5 extension -->
+    <Reference Include="Unity.TextMeshPro"><HintPath>$(SubnauticaManaged)\Unity.TextMeshPro.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Unity.InputSystem"><HintPath>$(SubnauticaManaged)\Unity.InputSystem.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="FMODUnity"><HintPath>$(SubnauticaManaged)\FMODUnity.dll</HintPath><Private>false</Private></Reference>
+    <!-- S3: AsyncOperationHandle<Shader> of AddressablesUtility.LoadAsync (the MarmosetUBER shader from Addressables) -->
+    <Reference Include="Unity.ResourceManager"><HintPath>$(SubnauticaManaged)\Unity.ResourceManager.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(SubnauticaManaged)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Assembly-CSharp-firstpass"><HintPath>$(SubnauticaManaged)\Assembly-CSharp-firstpass.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="BepInEx"><HintPath>$(BepInExCore)\BepInEx.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(BepInExCore)\0Harmony.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

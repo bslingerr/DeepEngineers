@@ -1,0 +1,43 @@
+{
+ "generated": "2026-10-24T15:36:45Z",
+ "machines": {
+  "desktop": {
+   "loadMs": {
+    "BEFORESTART": null,
+    "CLIPMAPS": null,
+    "ENTITIES": null,
+    "HELLO": null,
+    "PICTURE": null,
+    "PRE": null,
+    "TOTAL": null
+   },
+   "machine": "desktop",
+   "measured": "2026-10-24",
+   "scenes": {},
+   "spec": "owner desktop"
+  }
+ },
+ "note": "Measured by tests/s10/analyze_s10.py from the plugins' rows (launcher.py s10 --part perf). Part 1 baseline: pass marks are informative until the S10 rewrite lands.",
+ "passMarks": {
+  "giveUps": {
+   "text": "window streaming: no batch reload given up under a burst (ROADMAP: 151 of ~170 gave up)",
+   "value": 0
+  },
+  "grid30k": {
+   "text": "30,000-block grid playable through the merged hull and distance LOD (part 3; not a part-1 scene)"
+  },
+  "memoryMB": {
+   "text": "a 16 GB machine: SE + Subnautica private <= 13,000 MB (3 GB left to Windows)",
+   "value": 13000.0
+  },
+  "pasteSnFps": {
+   "desktop": 60.0,
+   "laptop": 30.0,
+   "text": "10,000-block blueprint: Subnautica >= 60 fps desktop, >= 30 on the Radeon 780M laptop"
+  },
+  "sharedGpuCap": {
+   "text": "shared GPUs: Subnautica capped at 30 fps (preset, part 6)",
+   "value": 30.0
+  }
+ }
+}

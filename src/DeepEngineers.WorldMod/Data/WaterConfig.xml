@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ DeepEngineers.World: Water Mod (3.23, Workshop 2200451495) sea for the planet DE_4546B, site version 1
+ (docs/CONTRACT.md section 3). The Water Mod reads Data\WaterConfig.xml of every mod in the world at load
+ ("Found Water Config for mod...", then "Loaded Planet Config 'MyObjectBuilder_PlanetGeneratorDefinition/DE_4546B'")
+ and applies these settings ONLY when a DE_4546B planet is added to a running session (spawn). Afterwards the sea
+ lives in the world save; editing this file never changes an existing world.
+ Radius 1.0526316 parses to the float32 0x3F86BCA2: sea radius Rs = 57000 x 1.0526316f = 60000.00390625 m.
+ Elements not listed keep the Water Mod defaults (WaterSettings.Default).
+ Checked by: python -I tools/worldmod/check_planet.py
+-->
+<WaterConfig xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!--
+ CONTRACT 5.4 "S14 conventions", format weapons.worldmod)
+ the Water Mod 3.23 switches these 20 weapon blocks off under water (its own Data/WaterConfig.xml lines 38-57,
+ FunctionalUnderwater="false", applied by WaterPhysicsComponentGrid: IMyFunctionalBlock.Enabled = false). It reads
+ Data/WaterConfig.xml of every mod of the world in the world's mod order and the last entry of a definition wins
+ (WaterConfigComponent.LoadConfigFiles, WaterData.BlockConfigs[id] = config); a DE world lists the Water Mod first and
+ DeepEngineers.World after it. The same 20 entries, every attribute equal (Volume drives buoyancy) except
+ FunctionalUnderwater="true". Read at every session load: existing worlds take it after a redeploy.
+ Checked by: python -I tools/worldmod/check_planet.py (s14.weapons rows).
+ -->
+  <BlockConfigs>
+    <BlockConfig TypeId="LargeGatlingTurret" SubtypeId="" Volume="23" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeGatlingTurret" SubtypeId="SmallGatlingTurret" Volume="3.375" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeMissileTurret" SubtypeId="" Volume="23" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeMissileTurret" SubtypeId="SmallMissileTurret" Volume="3.375" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="InteriorTurret" SubtypeId="LargeInteriorTurret" Volume="1.125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncher" SubtypeId="" Volume="0.5" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncher" SubtypeId="LargeMissileLauncher" Volume="31.25" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncherReload" SubtypeId="SmallRocketLauncherReload" Volume="1.125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallGatlingGun" SubtypeId="" Volume="0.3125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallGatlingGun" SubtypeId="SmallBlockAutocannon" Volume="0.3125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncherReload" SubtypeId="SmallBlockMediumCalibreGun" Volume="0.625" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncher" SubtypeId="LargeBlockLargeCalibreGun" Volume="29.375" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncherReload" SubtypeId="LargeRailgun" Volume="210" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncherReload" SubtypeId="SmallRailgun" Volume="1.875" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeMissileTurret" SubtypeId="LargeCalibreTurret" Volume="31.25" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeMissileTurret" SubtypeId="LargeBlockMediumCalibreTurret" Volume="23.125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeMissileTurret" SubtypeId="SmallBlockMediumCalibreTurret" Volume="1.375" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="LargeGatlingTurret" SubtypeId="AutoCannonTurret" Volume="1.25" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallMissileLauncher" SubtypeId="SmallMissileLauncherWarfare2" Volume="0.5" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+    <BlockConfig TypeId="SmallGatlingGun" SubtypeId="SmallGatlingGunWarfare2" Volume="0.3125" FunctionalUnderwater="true" FunctionalAboveWater="true" PlayDamageEffect="false" IsPressurized="false"/>
+  </BlockConfigs>
+  <PlanetConfigs>
+    <PlanetConfig TypeId="MyObjectBuilder_PlanetGeneratorDefinition" SubtypeId="DE_4546B">
+      <WaterSettings>
+        <Radius>1.0526316</Radius>
+        <WaveHeight>0</WaveHeight>
+        <EnableFish>false</EnableFish>
+        <TideHeight>0</TideHeight>
+        <CrushDamage>0</CrushDamage>
+        <CurrentSpeed>0</CurrentSpeed>
+        <Volumetric>false</Volumetric>
+        <!-- S15 part B (CONTRACT 5.4 "S15 conventions", format water.material): the sea's surface material is ours,
+ Data/TransparentMaterials.sbc (generated texture); the Water Mod's SerializableStringId
+ New worlds only: the plugin applies it at bind for existing ones. Checked by s15_water.py.-->
+        <Texture>
+          <String>DE_4546B_Water</String>
+        </Texture>
+        <!-- much better"): an opaque sea from the air; with Transparent
+ on, the mod's surface takes alpha 0.94 and SE's soft-particle fade grows with altitude, so from 30 km the seabed
+ shows through.-->
+        <Transparent>false</Transparent>
+        <!-- S15 (run 20261024-063156: the band's near water dMax 34 to 15, dL 13 to 3 with it): the planet's Water Mod material is
+ ours, DE_4546B_Sea below (Reflectivity 0.5); WaterSettings.MaterialId
+ New worlds only: the plugin applies it at bind for existing ones
+ (de.water material); de.water material=Water brings the mod's own back for a session. Checked by s15_water.py. -->
+        <MaterialId>DE_4546B_Sea</MaterialId>
+      </WaterSettings>
+      <!-- S15 part B (run 20261024-003024): the Water Mod softens its surface over min((altitude / 2000)^2, Radius x this) x 5 m
+
+ 0.0001 keeps its own softness up to 4.9 km and caps it at 30 m above (the 5 km look, opaque). A PlanetConfig
+ value: read at every world load, existing worlds take it after a redeploy. Checked by s15_water.py.-->
+      <DistantSoftnessOffset>0.0001</DistantSoftnessOffset>
+      <!-- S15 (the sea seam of the S8a look sheet 20261024-124136; CONTRACT 5.4 "S15 conventions", format water.material): the
+ Water Mod adds pow(dot(n, h), Specularity) x SpecularIntensity to a surface quad only where its sunDot > 0, with a half
+ vector from the camera's planet-local position minus world quad corners: not a
+ glint, and at the terminator a step along the quad edges (44 luma from 5 km, 32 from 30 km in that sheet). Off for the
+ planet (the mod's default 1); the terminator is then its continuous max(sunDot, AmbientColorIntensity). A PlanetConfig
+ value: read at every world load. Checked by s15_water.py.-->
+      <SpecularIntensity>0</SpecularIntensity>
+    </PlanetConfig>
+  </PlanetConfigs>
+  <!-- S15: listed with the Water Mod's own textures-->
+  <WaterTextures>
+    <Texture>DE_4546B_Water</Texture>
+    <Texture>DE_4546B_WaterFar</Texture>
+  </WaterTextures>
+  <!-- S15: a copy of the Water Mod's own "Water" material (its Data/WaterConfig.xml, the values only) with Reflectivity 0.5; its
+ billboards reflect Reflectivity x max(fresnel, 0.1) of the sky. Measured in run
+ 20261024-063156 (band pictures with both): the near water at the switch dMax 34 to 15, dL 13 to 3 (within T5); the far water
+ moved by 4 luma only (SE's atmosphere, not the reflection, makes it: format band.far). The planet's default (MaterialId
+ above); the S15 launcher's band part takes its information picture with the mod's own (de.water material=Water).
+ Checked by s15_water.py. -->
+  <MaterialConfigs>
+    <MaterialConfig SubtypeId="DE_4546B_Sea">
+      <Density>1024</Density>
+      <Viscosity>0.05</Viscosity>
+      <DrawSplashes>true</DrawSplashes>
+      <DrawBubbles>true</DrawBubbles>
+      <CollectedItem>Ice</CollectedItem>
+      <CollectedAmount>10</CollectedAmount>
+      <MaxSurfaceFluctuation>5</MaxSurfaceFluctuation>
+      <SurfaceFluctuationAngleSpeed>2</SurfaceFluctuationAngleSpeed>
+      <SurfaceFluctuationSpeed>0.5</SurfaceFluctuationSpeed>
+      <Reflectivity>0.5</Reflectivity>
+      <UnderwaterReflectivity>0.2</UnderwaterReflectivity>
+      <Fresnel>2</Fresnel>
+      <MinFogDensity>0.06</MinFogDensity>
+      <FogDensityDepth>0.00125</FogDensityDepth>
+      <FogDensityDepthScalar>100</FogDensityDepthScalar>
+      <InitialSunIntensity>8</InitialSunIntensity>
+    </MaterialConfig>
+  </MaterialConfigs>
+</WaterConfig>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ DeepEngineers.World, S17 (docs/S17-BRIEF.md; CONTRACT section 5.4 "S17 conventions", kind rows): one blueprint per kind, 1 raw fish -> 1 cooked
+ fish in 4 s, in the Food Processor's own blueprint class FoodProcessorRations (the class's input constraint is built from
+ its blueprints' prerequisites after the definitions load: MyProductionBlockDefinition.LoadPostProcess / PrepareConstraint).
+ Generated from the S17 Python twin's tables (tools/s17/s17_ref.py); checked by tools/worldmod/check_planet.py (s17.* rows,
+ tools/worldmod/s17_food.py). Icons and models are the game's own raw / cooked meat by their content paths
+ (MyDefinitionManager.ProcessContentFilePath: a path absent from the mod folder resolves to the game Content); no game asset
+ is copied into this mod.
+-->
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Blueprints>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Peeper</SubtypeId>
+            </Id>
+            <DisplayName>Cook Peeper</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Peeper_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Peeper_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Bladderfish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Bladderfish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Bladderfish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Bladderfish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Boomerang</SubtypeId>
+            </Id>
+            <DisplayName>Cook Boomerang</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Boomerang_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Boomerang_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Hoopfish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Hoopfish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Hoopfish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Hoopfish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Spadefish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Spadefish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Spadefish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Spadefish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Reginald</SubtypeId>
+            </Id>
+            <DisplayName>Cook Reginald</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Reginald_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Reginald_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Eyeye</SubtypeId>
+            </Id>
+            <DisplayName>Cook Eyeye</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Eyeye_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Eyeye_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_HoleFish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Holefish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_HoleFish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_HoleFish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_Spinefish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Spinefish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Spinefish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_Spinefish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+        <Blueprint>
+            <Id>
+                <TypeId>BlueprintDefinition</TypeId>
+                <SubtypeId>DE_CookFish_GarryFish</SubtypeId>
+            </Id>
+            <DisplayName>Cook Garryfish</DisplayName>
+            <Icon>Textures\GUI\Icons\Items\Meat_mammal_cooked.dds</Icon>
+            <Prerequisites>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_GarryFish_Raw" />
+            </Prerequisites>
+            <Results>
+                <Item Amount="1" TypeId="ConsumableItem" SubtypeId="DE_Fish_GarryFish_Cooked" />
+            </Results>
+            <BaseProductionTimeInSeconds>4</BaseProductionTimeInSeconds>
+        </Blueprint>
+    </Blueprints>
+    <BlueprintClassEntries>
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Peeper" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Bladderfish" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Boomerang" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Hoopfish" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Spadefish" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Reginald" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Eyeye" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_HoleFish" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_Spinefish" />
+        <Entry Class="FoodProcessorRations" BlueprintSubtypeId="DE_CookFish_GarryFish" />
+    </BlueprintClassEntries>
+</Definitions>

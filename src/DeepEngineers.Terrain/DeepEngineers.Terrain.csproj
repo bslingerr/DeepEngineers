@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- S4 core: Subnautica octree reader, sampler and tile content mapping (CONTRACT 3.1). Pure C#: no VRage, no Unity,
+ no game reference. The SE plugin compiles these sources itself (DeepEngineers.SE.csproj links..\DeepEngineers.Terrain\**\*.cs, no extra deployed DLL); tests/DeepEngineers.Terrain.Tests references this project.
+ Built for netstandard2.0 (the contract) and net48 (exactly what the SE plugin compiles; the tests run that build).
+ Never put an assembly-level attribute in a.cs file here: the plugin links every.cs of this folder. -->
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net48</TargetFrameworks>
+    <AssemblyName>DeepEngineers.Terrain</AssemblyName>
+    <RootNamespace>DeepEngineers.Terrain</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="DeepEngineers.Terrain.Tests" />
+  </ItemGroup>
+</Project>

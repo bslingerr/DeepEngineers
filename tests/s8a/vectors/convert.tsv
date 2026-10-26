@@ -1,0 +1,348 @@
+# S8a convert vectors (tools/planet/s8a_ref.py --vectors); doubles as IEEE bits (16 hex)
+sample	c000000000000000	0	0	0
+sample	c000000000000000	1	0	0
+sample	c000000000000000	150	0	0
+sample	bff0000000000000	0	0	0
+sample	bff0000000000000	1	0	0
+sample	bff0000000000000	150	0	0
+sample	bfefffeb074a771d	0	0	0
+sample	bfefffeb074a771d	1	0	0
+sample	bfefffeb074a771d	150	0	0
+sample	bfefbf487fcb923a	0	0	0
+sample	bfefbf487fcb923a	1	0	0
+sample	bfefbf487fcb923a	150	0	0
+sample	bfefbefbefbefbf0	0	0	1
+sample	bfefbefbefbefbf0	1	0	1
+sample	bfefbefbefbefbf0	150	0	1
+sample	bfe0000000000000	0	0	63
+sample	bfe0000000000000	1	0	63
+sample	bfe0000000000000	150	0	63
+sample	bd719799812dea11	0	0	125
+sample	bd719799812dea11	1	0	125
+sample	bd719799812dea11	150	0	125
+sample	0000000000000000	0	0	126
+sample	0000000000000000	1	1	126
+sample	0000000000000000	150	150	126
+sample	3d719799812dea11	0	0	126
+sample	3d719799812dea11	1	1	126
+sample	3d719799812dea11	150	150	126
+sample	3f804102ff8ec0f9	0	0	126
+sample	3f804102ff8ec0f9	1	1	126
+sample	3f804102ff8ec0f9	150	150	126
+sample	3fd0000000000000	0	0	157
+sample	3fd0000000000000	1	1	157
+sample	3fd0000000000000	150	150	157
+sample	3fe0000000000000	0	0	189
+sample	3fe0000000000000	1	1	189
+sample	3fe0000000000000	150	150	189
+sample	3feff7ced916872b	0	0	251
+sample	3feff7ced916872b	1	1	251
+sample	3feff7ced916872b	150	150	251
+sample	3feffffffaa19c47	0	0	251
+sample	3feffffffaa19c47	1	1	251
+sample	3feffffffaa19c47	150	150	251
+sample	3ff0000000000000	0	0	0
+sample	3ff0000000000000	1	1	0
+sample	3ff0000000000000	150	150	0
+sample	3ff8000000000000	0	0	0
+sample	3ff8000000000000	1	1	0
+sample	3ff8000000000000	150	150	0
+sample	7ff8000000000000	0	0	0
+sample	7ff8000000000000	1	0	0
+sample	7ff8000000000000	150	0	0
+content	0	bff0000000000000
+content	1	bfefbfbfbfbfbfc0
+content	2	bfef7f7f7f7f7f80
+content	3	bfef3f3f3f3f3f3f
+content	4	bfeefefefefefeff
+content	5	bfeebebebebebebf
+content	6	bfee7e7e7e7e7e7e
+content	7	bfee3e3e3e3e3e3e
+content	8	bfedfdfdfdfdfdfe
+content	9	bfedbdbdbdbdbdbe
+content	10	bfed7d7d7d7d7d7e
+content	11	bfed3d3d3d3d3d3d
+content	12	bfecfcfcfcfcfcfd
+content	13	bfecbcbcbcbcbcbd
+content	14	bfec7c7c7c7c7c7c
+content	15	bfec3c3c3c3c3c3c
+content	16	bfebfbfbfbfbfbfc
+content	17	bfebbbbbbbbbbbbc
+content	18	bfeb7b7b7b7b7b7c
+content	19	bfeb3b3b3b3b3b3b
+content	20	bfeafafafafafafb
+content	21	bfeababababababb
+content	22	bfea7a7a7a7a7a7a
+content	23	bfea3a3a3a3a3a3a
+content	24	bfe9f9f9f9f9f9fa
+content	25	bfe9b9b9b9b9b9ba
+content	26	bfe979797979797a
+content	27	bfe9393939393939
+content	28	bfe8f8f8f8f8f8f9
+content	29	bfe8b8b8b8b8b8b9
+content	30	bfe8787878787878
+content	31	bfe8383838383838
+content	32	bfe7f7f7f7f7f7f8
+content	33	bfe7b7b7b7b7b7b8
+content	34	bfe7777777777778
+content	35	bfe7373737373737
+content	36	bfe6f6f6f6f6f6f7
+content	37	bfe6b6b6b6b6b6b6
+content	38	bfe6767676767676
+content	39	bfe6363636363636
+content	40	bfe5f5f5f5f5f5f6
+content	41	bfe5b5b5b5b5b5b6
+content	42	bfe5757575757576
+content	43	bfe5353535353535
+content	44	bfe4f4f4f4f4f4f5
+content	45	bfe4b4b4b4b4b4b4
+content	46	bfe4747474747474
+content	47	bfe4343434343434
+content	48	bfe3f3f3f3f3f3f4
+content	49	bfe3b3b3b3b3b3b4
+content	50	bfe3737373737374
+content	51	bfe3333333333333
+content	52	bfe2f2f2f2f2f2f3
+content	53	bfe2b2b2b2b2b2b2
+content	54	bfe2727272727272
+content	55	bfe2323232323232
+content	56	bfe1f1f1f1f1f1f2
+content	57	bfe1b1b1b1b1b1b2
+content	58	bfe1717171717172
+content	59	bfe1313131313131
+content	60	bfe0f0f0f0f0f0f1
+content	61	bfe0b0b0b0b0b0b0
+content	62	bfe0707070707070
+content	63	bfe0303030303030
+content	64	bfdfdfdfdfdfdfe0
+content	65	bfdf5f5f5f5f5f60
+content	66	bfdedededededede
+content	67	bfde5e5e5e5e5e5e
+content	68	bfddddddddddddde
+content	69	bfdd5d5d5d5d5d5e
+content	70	bfdcdcdcdcdcdcdc
+content	71	bfdc5c5c5c5c5c5c
+content	72	bfdbdbdbdbdbdbdc
+content	73	bfdb5b5b5b5b5b5c
+content	74	bfdadadadadadada
+content	75	bfda5a5a5a5a5a5a
+content	76	bfd9d9d9d9d9d9da
+content	77	bfd959595959595a
+content	78	bfd8d8d8d8d8d8d8
+content	79	bfd8585858585858
+content	80	bfd7d7d7d7d7d7d8
+content	81	bfd7575757575758
+content	82	bfd6d6d6d6d6d6d6
+content	83	bfd6565656565656
+content	84	bfd5d5d5d5d5d5d6
+content	85	bfd5555555555556
+content	86	bfd4d4d4d4d4d4d4
+content	87	bfd4545454545454
+content	88	bfd3d3d3d3d3d3d4
+content	89	bfd3535353535354
+content	90	bfd2d2d2d2d2d2d2
+content	91	bfd2525252525252
+content	92	bfd1d1d1d1d1d1d2
+content	93	bfd1515151515152
+content	94	bfd0d0d0d0d0d0d0
+content	95	bfd0505050505050
+content	96	bfcf9f9f9f9f9fa0
+content	97	bfce9e9e9e9e9ea0
+content	98	bfcd9d9d9d9d9d9c
+content	99	bfcc9c9c9c9c9c9c
+content	100	bfcb9b9b9b9b9b9c
+content	101	bfca9a9a9a9a9a9c
+content	102	bfc9999999999998
+content	103	bfc8989898989898
+content	104	bfc7979797979798
+content	105	bfc6969696969698
+content	106	bfc5959595959594
+content	107	bfc4949494949494
+content	108	bfc3939393939394
+content	109	bfc2929292929294
+content	110	bfc1919191919190
+content	111	bfc0909090909090
+content	112	bfbf1f1f1f1f1f20
+content	113	bfbd1d1d1d1d1d20
+content	114	bfbb1b1b1b1b1b18
+content	115	bfb9191919191918
+content	116	bfb7171717171718
+content	117	bfb5151515151518
+content	118	bfb3131313131310
+content	119	bfb1111111111110
+content	120	bfae1e1e1e1e1e20
+content	121	bfaa1a1a1a1a1a20
+content	122	bfa6161616161610
+content	123	bfa2121212121210
+content	124	bf9c1c1c1c1c1c20
+content	125	bf94141414141420
+content	126	bf88181818181800
+content	127	bf70101010101000
+content	128	3f70101010101000
+content	129	3f88181818181800
+content	130	3f94141414141400
+content	131	3f9c1c1c1c1c1c00
+content	132	3fa2121212121220
+content	133	3fa6161616161620
+content	134	3faa1a1a1a1a1a20
+content	135	3fae1e1e1e1e1e20
+content	136	3fb1111111111110
+content	137	3fb3131313131310
+content	138	3fb5151515151510
+content	139	3fb7171717171710
+content	140	3fb9191919191920
+content	141	3fbb1b1b1b1b1b20
+content	142	3fbd1d1d1d1d1d20
+content	143	3fbf1f1f1f1f1f20
+content	144	3fc0909090909090
+content	145	3fc1919191919190
+content	146	3fc2929292929290
+content	147	3fc3939393939390
+content	148	3fc4949494949498
+content	149	3fc5959595959598
+content	150	3fc6969696969698
+content	151	3fc7979797979798
+content	152	3fc8989898989898
+content	153	3fc9999999999998
+content	154	3fca9a9a9a9a9a98
+content	155	3fcb9b9b9b9b9b98
+content	156	3fcc9c9c9c9c9ca0
+content	157	3fcd9d9d9d9d9da0
+content	158	3fce9e9e9e9e9ea0
+content	159	3fcf9f9f9f9f9fa0
+content	160	3fd0505050505050
+content	161	3fd0d0d0d0d0d0d0
+content	162	3fd1515151515150
+content	163	3fd1d1d1d1d1d1d0
+content	164	3fd2525252525254
+content	165	3fd2d2d2d2d2d2d4
+content	166	3fd3535353535354
+content	167	3fd3d3d3d3d3d3d4
+content	168	3fd4545454545454
+content	169	3fd4d4d4d4d4d4d4
+content	170	3fd5555555555554
+content	171	3fd5d5d5d5d5d5d4
+content	172	3fd6565656565658
+content	173	3fd6d6d6d6d6d6d8
+content	174	3fd7575757575758
+content	175	3fd7d7d7d7d7d7d8
+content	176	3fd8585858585858
+content	177	3fd8d8d8d8d8d8d8
+content	178	3fd9595959595958
+content	179	3fd9d9d9d9d9d9d8
+content	180	3fda5a5a5a5a5a5c
+content	181	3fdadadadadadadc
+content	182	3fdb5b5b5b5b5b5c
+content	183	3fdbdbdbdbdbdbdc
+content	184	3fdc5c5c5c5c5c5c
+content	185	3fdcdcdcdcdcdcdc
+content	186	3fdd5d5d5d5d5d5c
+content	187	3fdddddddddddddc
+content	188	3fde5e5e5e5e5e60
+content	189	3fdedededededee0
+content	190	3fdf5f5f5f5f5f60
+content	191	3fdfdfdfdfdfdfe0
+content	192	3fe0303030303030
+content	193	3fe0707070707070
+content	194	3fe0b0b0b0b0b0b0
+content	195	3fe0f0f0f0f0f0f0
+content	196	3fe1313131313132
+content	197	3fe1717171717172
+content	198	3fe1b1b1b1b1b1b2
+content	199	3fe1f1f1f1f1f1f2
+content	200	3fe2323232323232
+content	201	3fe2727272727272
+content	202	3fe2b2b2b2b2b2b2
+content	203	3fe2f2f2f2f2f2f2
+content	204	3fe3333333333334
+content	205	3fe3737373737374
+content	206	3fe3b3b3b3b3b3b4
+content	207	3fe3f3f3f3f3f3f4
+content	208	3fe4343434343434
+content	209	3fe4747474747474
+content	210	3fe4b4b4b4b4b4b4
+content	211	3fe4f4f4f4f4f4f4
+content	212	3fe5353535353536
+content	213	3fe5757575757576
+content	214	3fe5b5b5b5b5b5b6
+content	215	3fe5f5f5f5f5f5f6
+content	216	3fe6363636363636
+content	217	3fe6767676767676
+content	218	3fe6b6b6b6b6b6b6
+content	219	3fe6f6f6f6f6f6f6
+content	220	3fe7373737373738
+content	221	3fe7777777777778
+content	222	3fe7b7b7b7b7b7b8
+content	223	3fe7f7f7f7f7f7f8
+content	224	3fe8383838383838
+content	225	3fe8787878787878
+content	226	3fe8b8b8b8b8b8b8
+content	227	3fe8f8f8f8f8f8f8
+content	228	3fe939393939393a
+content	229	3fe979797979797a
+content	230	3fe9b9b9b9b9b9ba
+content	231	3fe9f9f9f9f9f9fa
+content	232	3fea3a3a3a3a3a3a
+content	233	3fea7a7a7a7a7a7a
+content	234	3feababababababa
+content	235	3feafafafafafafa
+content	236	3feb3b3b3b3b3b3c
+content	237	3feb7b7b7b7b7b7c
+content	238	3febbbbbbbbbbbbc
+content	239	3febfbfbfbfbfbfc
+content	240	3fec3c3c3c3c3c3c
+content	241	3fec7c7c7c7c7c7c
+content	242	3fecbcbcbcbcbcbc
+content	243	3fecfcfcfcfcfcfc
+content	244	3fed3d3d3d3d3d3e
+content	245	3fed7d7d7d7d7d7e
+content	246	3fedbdbdbdbdbdbe
+content	247	3fedfdfdfdfdfdfe
+content	248	3fee3e3e3e3e3e3e
+content	249	3fee7e7e7e7e7e7e
+content	250	3feebebebebebebe
+content	251	3feefefefefefefe
+content	252	3fef3f3f3f3f3f40
+content	253	3fef7f7f7f7f7f80
+content	254	3fefbfbfbfbfbfc0
+content	255	3ff0000000000000
+centre	0	0	0	3fe0000000000000	c09ffe0000000000	c0a7bf0000000000	c09ffe0000000000
+centre	0	0	0	0000000000000000	c0a0000000000000	c0a7c00000000000	c0a0000000000000
+centre	12	34	56	3fe0000000000000	c09fce0000000000	c0a77b0000000000	c09f1e0000000000
+centre	12	34	56	0000000000000000	c09fd00000000000	c0a77c0000000000	c09f200000000000
+centre	4095	3199	4095	3fe0000000000000	409ffe0000000000	4063f00000000000	409ffe0000000000
+centre	4095	3199	4095	0000000000000000	409ffc0000000000	4063e00000000000	409ffc0000000000
+centre	-5600	2900	9900	3fe0000000000000	c0bddf8000000000	c061700000000000	40beac8000000000
+centre	-5600	2900	9900	0000000000000000	c0bde00000000000	c061800000000000	40beac0000000000
+centre	-1	-1	-1	3fe0000000000000	c0a0010000000000	c0a7c10000000000	c0a0010000000000
+centre	-1	-1	-1	0000000000000000	c0a0020000000000	c0a7c20000000000	c0a0020000000000
+material	Sand_02	1
+material	Stone_01	111
+material	Stone_02	150
+material	Stone_03	190
+material	Stone_04	141
+material	Stone_05	84
+material	Grass	219
+material	Iron_02	95
+material	Nickel_01	96
+material	Silicon_01	107
+material	Cobalt_01	108
+material	Magnesium_01	117
+material	Silver_01	118
+material	Gold_01	119
+material	Platinum_01	121
+material	Uraninite_01	122
+material	Stone	84
+material	Ice_01	84
+material	sand_02	84
+biome	Grass	403e000000000000	6
+biome	Sand_02	404e000000000000	0
+biome	Sand_02	404e000008637bd0	1
+biome	Stone_01	4024000000000000	2
+biome	Stone_02	408f380000000000	3
+biome	Stone_03	408f400000000000	4
+biome	Stone_04	408f440000000000	7
+biome	Stone_05	4059000000000000	7
+biome	Other_9	4044000000000000	7
+biome	-	4024000000000000	255
+biome	Grass	7ff8000000000000	255

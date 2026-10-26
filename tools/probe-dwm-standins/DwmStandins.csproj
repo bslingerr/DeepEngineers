@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+ Synthetic stand-ins for the two game windows (no game is launched).
+ "top" = Space Engineers stand-in: borderless WinForms window, D3D11 device, DXGI 1.0 swap chain
+ with the same settings SE 1.210.014 uses (SwapEffect.Discard, 2 buffers, R8G8B8A8_UNorm_SRgb,
+ windowed, MakeWindowAssociation IgnoreAll). Optional flip-model variant for comparison.
+ "below" = Subnautica stand-in: borderless window with WS_EX_NOACTIVATE | WS_EX_TOOLWINDOW.
+ "run" = orchestrator: starts both, captures the composed screen region, prints a JSON summary.
+ Probe for docs/recon/probe-display-input.md (tests T-D0a / T-D0b).
+ S2 additions (ROADMAP S2 tools/tests): key=value options of run/below/top - pattern=quarters (the S2.T-D0
+ translucent case: 50 % white over a dark window, as SE stores it and corrected), colour=R,G,B (the below window),
+ restyle=1 (the runtime-restyle variant: styles applied after the window is shown); and Covered.cs, the S2.N8 (1)
+ covered-render stand-in: "covered" / "coveredseq" (cases covered, margins1, marginsHole, uncovered; below-stats.jsonl
+ at 1 Hz with Present duration and interval, DXGI frame statistics, a hit-test grid; summary.json per case).
+ Build outside the repository tree, e.g. dotnet build -c Release -o <scratch>\dwm-bin.
+ -->
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>disable</Nullable>
+    <AssemblyName>DwmStandins</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+  </ItemGroup>
+</Project>

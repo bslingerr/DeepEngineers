@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Space Engineers (SE1) client plugin, loaded by Pulsar (Legacy.exe) from Legacy\Local\DeepEngineers.SE\plugin.dll.
+ Owns the simulation side of the bridge: site map (doubles), poses, model/instance streams, display switch, damage. -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>plugin</AssemblyName>
+    <RootNamespace>DeepEngineers.SE</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <!-- ps1 deploy) or release (build.ps1 -Flavor release, or
+ dotnet build -c Release -p:DeepEngFlavor=release). The release flavour defines DEEPENG_RELEASE (BuildFlavor.cs),
+ builds into bin\ReleaseFlavor\ and obj\ReleaseFlavor\ (the dev outputs stay untouched), writes no pdb and maps the
+ source root, so no machine path is compiled into the DLL (tools/release/check_release.py scans for it). -->
+  <PropertyGroup Condition="'$(DeepEngFlavor)' == 'release'">
+    <DefineConstants>$(DefineConstants);DEEPENG_RELEASE</DefineConstants>
+    <OutputPath>bin\ReleaseFlavor\$(Configuration)\</OutputPath>
+    <IntermediateOutputPath>obj\ReleaseFlavor\$(Configuration)\</IntermediateOutputPath>
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+    <PathMap>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\..'))=/_/DeepEngineers</PathMap>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <ProjectReference Include="..\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+
+  <!-- Game assemblies: referenced from the install, never copied (Private=false). -->
+  <ItemGroup>
+    <Reference Include="Sandbox.Game"><HintPath>$(SEBin64)\Sandbox.Game.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Sandbox.Common"><HintPath>$(SEBin64)\Sandbox.Common.dll</HintPath><Private>false</Private></Reference>
+    <!-- MyGuiScreenBase (base class of MyGuiScreenGamePlay / MyGuiScreenLoading, used by the S0 phase tracking) -->
+    <Reference Include="Sandbox.Graphics"><HintPath>$(SEBin64)\Sandbox.Graphics.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SpaceEngineers.Game"><HintPath>$(SEBin64)\SpaceEngineers.Game.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage"><HintPath>$(SEBin64)\VRage.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Game"><HintPath>$(SEBin64)\VRage.Game.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Math"><HintPath>$(SEBin64)\VRage.Math.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Library"><HintPath>$(SEBin64)\VRage.Library.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Input"><HintPath>$(SEBin64)\VRage.Input.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Render"><HintPath>$(SEBin64)\VRage.Render.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Render11"><HintPath>$(SEBin64)\VRage.Render11.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VRage.Platform.Windows"><HintPath>$(SEBin64)\VRage.Platform.Windows.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(MSBuildThisFileDirectory)..\..\third_party\pulsar\extracted\Libraries\Legacy\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <!-- S4: VRage.Voxels.VrVoxelMesh (IMyStorageDataProvider.PostProcess) and the Havok wrappers (A-T1 cell checks:
+ HkUniformGridShape, HkBvCompressedMeshShape) -->
+    <Reference Include="VRage.NativeWrapper"><HintPath>$(SEBin64)\VRage.NativeWrapper.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="HavokWrapper"><HintPath>$(SEBin64)\HavokWrapper.dll</HintPath><Private>false</Private></Reference>
+    <!-- S14 round 4 (the left ear): MyXAudio2.Apply3D's SharpDX arguments (X3DAudio Listener/Emitter/DspSettings, XAudio2 voices) -->
+    <Reference Include="SharpDX"><HintPath>$(SEBin64)\SharpDX.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="SharpDX.XAudio2"><HintPath>$(SEBin64)\SharpDX.XAudio2.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+
+  <!-- S4 terrain: the VRage-free core (src/DeepEngineers.Terrain) is compiled into the plugin itself (no extra deployed
+ DLL); the IDE shows it under Terrain\Core. -->
+  <ItemGroup>
+    <Compile Include="..\DeepEngineers.Terrain\**\*.cs" Exclude="..\DeepEngineers.Terrain\obj\**;..\DeepEngineers.Terrain\bin\**" LinkBase="Terrain\Core" />
+  </ItemGroup>
+</Project>

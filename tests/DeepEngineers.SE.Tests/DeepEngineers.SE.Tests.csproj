@@ -1,0 +1,134 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- SE link tests: the game-independent SE plugin sources (Link, Phases, DevChannel, MiniJson,
+ Log, BuildFlavor) compiled into the test assembly and driven against real named sections created in process
+ with the Wire creator rules, on a virtual tick clock. No SE assembly is referenced; VersionGate is stubbed.
+ Includes the C# seeded failures S0.M5a-c (ROADMAP §3 rule 1). S1: the site validation decision table, the C1
+ composition against tools/worldmap/wire_ref.py (c1_oracle.py, python -I), S1.M1/M5/M9 red.
+ Run: dotnet test tests/DeepEngineers.SE.Tests -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <AssemblyName>DeepEngineers.SE.Tests</AssemblyName>
+    <RootNamespace>DeepEngineers.SE.Tests</RootNamespace>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)..\DeepEngineers.Wire.Tests\wire.runsettings</RunSettingsFilePath>
+    <!-- fields that only the plugin assigns (Phases.PhaseForced, SeTickInput.Rs) and the VersionGate stub -->
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.0" />
+    <ProjectReference Include="..\..\src\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\src\DeepEngineers.SE\BuildFlavor.cs" Link="se\BuildFlavor.cs" />
+    <!-- S11 hook: the game-free S11 rules of the SE side (BuildFlavor.cs names S11SeMutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S11\S11SeLogic.cs" Link="se\S11SeLogic.cs" />
+    <!-- S16 hook: the game-free S16 part of the SE side (BuildFlavor.cs names S16SeMutants, Link.cs fills the C5 extension) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S16\S16SeLogic.cs" Link="se\S16SeLogic.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S13\S13SeRules.cs" Link="se\S13SeRules.cs" /><!-- S13 hook: the pure rules (BuildFlavor calls the mutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S14\S14SeRules.cs" Link="se\S14SeRules.cs" /><!-- S14 hook: the SE mutants (BuildFlavor calls them) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S15\S15SeLogic.cs" Link="se\S15SeLogic.cs" /><!-- S15 hook: the C5 block and C6 writer Link calls, the mutants BuildFlavor calls -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S12\S12SeLogic.cs" Link="se\S12SeLogic.cs" /><!-- S12 hook: the C6 writer Link calls, the mutants BuildFlavor calls -->
+    <Compile Include="..\..\src\DeepEngineers.SE\Log.cs" Link="se\Log.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\MiniJson.cs" Link="se\MiniJson.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S17\S17SeLogic.cs" Link="se\S17SeLogic.cs" /><!-- S17 hook: the C5 catch request Link.cs fills -->
+    <Compile Include="..\..\src\DeepEngineers.SE\Link.cs" Link="se\Link.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\Phases.cs" Link="se\Phases.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\DevChannel.cs" Link="se\DevChannel.cs" />
+    <!-- S1: the game-independent parts of the site binding and the C1 writer (decision table, composition, geometry, mutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S1Mutants.cs" Link="se\S1Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\SiteValidation.cs" Link="se\SiteValidation.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\FrameComposer.cs" Link="se\FrameComposer.cs" />
+    <!-- Lab commands (de.spawnplanet, de.g2e3): argument parsing, the min-corner rule and the G2-E3 decision table -->
+    <Compile Include="..\..\src\DeepEngineers.SE\LabLogic.cs" Link="se\LabLogic.cs" />
+    <!-- S2 (display + input + audio): the game-independent parts: config and the A' switch, mutants, chat syntax, the
+ z-order walker, the render-thread display executor (fake window ops), the D3D11 alpha fill and readback (WARP
+ device), the view-state driver over Wire's machine, the audio decision -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S2Mutants.cs" Link="se\S2Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S2Config.cs" Link="se\S2Config.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S2Args.cs" Link="se\S2Args.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\NativeWin.cs" Link="se\NativeWin.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\ZOrderWalker.cs" Link="se\ZOrderWalker.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\FallbackAPrime.cs" Link="se\FallbackAPrime.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\RenderDisplay.cs" Link="se\RenderDisplay.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\D3D11Interop.cs" Link="se\D3D11Interop.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\DisplayController.cs" Link="se\DisplayController.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\CrossfadeRules.cs" Link="se\CrossfadeRules.cs" /><!-- S7t-se-composite (T1) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S7tSettings.cs" Link="se\S7tSettings.cs" /><!-- S7t-se-composite (T1, T3) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\ViewStateAdapter.cs" Link="se\ViewStateAdapter.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\ViewStateDriver.cs" Link="se\ViewStateDriver.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\AudioMix.cs" Link="se\AudioMix.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\AudioController.cs" Link="se\AudioController.cs" />
+    <!-- S8-robustness: the peer-loss fallback table, the notice, the audio restore, the exit-poll and resend rules, rows (Link and DisplayController call it) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S8Rules.cs" Link="se\S8Rules.cs" />
+    <!-- de.motion: the motion plan of the S2.N2 bob and S2.N7 dive -->
+    <Compile Include="..\..\src\DeepEngineers.SE\MotionPlan.cs" Link="se\MotionPlan.cs" />
+    <!-- S2b (swimming): the game-independent parts: mutants (BuildFlavor's registry needs them), the model seam over Wire's
+ SwimModel and its swim row, input mapping and scripts, the suit/oxygen rules, chat -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S2bMutants.cs" Link="se\S2bMutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S2bArgs.cs" Link="se\S2bArgs.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\SwimInput.cs" Link="se\SwimInput.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\SwimRules.cs" Link="se\SwimRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\RespawnRules.cs" Link="se\RespawnRules.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\SwimModelAdapter.cs" Link="se\SwimModelAdapter.cs" />
+    <!-- S5a (arms and breath): mutants, the C1 swim extension fill -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S5aMutants.cs" Link="se\S5aMutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\SwimWireFill.cs" Link="se\SwimWireFill.cs" />
+    <!-- S7a Unity-free parts: the C1 locomotion composer (in SwimWireFill.cs) and the C6 writer core (flags, jumps, pole, dev phase) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\SunSyncCore.cs" Link="se\SunSyncCore.cs" />
+    <!-- S3 (first block): the game-independent parts of the SE producer: mutants (BuildFlavor's registry needs them), the
+ part diff and debounce, the budgeted ring pump, the stream gate, the lab placement, de.s3 syntax, JSONL rows, and
+ the C3/C4 records through Wire's ModelCodec (S3Codec.cs); s3_oracle.py is the Python oracle -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S3Mutants.cs" Link="se\S3Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S3Logic.cs" Link="se\S3Logic.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S3Codec.cs" Link="se\S3Codec.cs" />
+    <!-- S5 (whole grids + character): the game-independent parts of the SE producer: mutants (BuildFlavor's registry needs
+ them), the conventions copy, canon1 and the skinned-export math, the entity-set hysteresis, the C4 lanes, the C2 row
+ plan, the character split, skins, the chunk key, de.s5 syntax and rows (DevChannel needs them), the.derec recorder -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S5Mutants.cs" Link="se\S5Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\S5Logic.cs" Link="se\S5Logic.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\StreamRecorder.cs" Link="se\StreamRecorder.cs" />
+    <!-- S6 (collision B + combat): the game-independent parts of the SE combat plugin: mutants (BuildFlavor's registry needs
+ them), the skin build and version stream, the block rule, the gates, the damage check order, de.s6 / de.spawn
+ syntax (DevChannel needs it), the test-record build pass, the s6.* rows and the SE self-check -->
+    <Compile Include="..\..\src\DeepEngineers.SE\Combat\S6Mutants.cs" Link="se\Combat\S6Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\Combat\S6Logic.cs" Link="se\Combat\S6Logic.cs" />
+    <!-- S7a (placement ghost): the game-independent half: S7a.M4 (BuildFlavor's registry needs it), the switch, the record
+ plan, the latency bookkeeping, the s7a.ghost row and the de.s7 ghost syntax -->
+    <Compile Include="..\..\src\DeepEngineers.SE\PlacementGhostRules.cs" Link="se\PlacementGhostRules.cs" />
+    <!-- S7a (picture policy): the selected policy, de.s7 {picture}, the entity-set radius rule and S7a.M1/M3 (BuildFlavor's
+ registry, ViewStateDriver and DisplayController need it) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\PicturePolicy.cs" Link="se\PicturePolicy.cs" />
+    <!-- S7: the SE S7 mutant flags (BuildFlavor's registry needs them) and the audio polish
+ rules (the A1 muffle decision, the effect names, the s7.audio cadence) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S7Mutants.cs" Link="se\S7Mutants.cs" />
+    <!-- S8a (terrain converter): the SE S8a mutant flags (BuildFlavor's registry needs them; M13 forwards to Wire's S8aWireMutants) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S8a\S8aMutants.cs" Link="se\S8a\S8aMutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\AudioPolishRules.cs" Link="se\AudioPolishRules.cs" />
+    <!-- S7p-character (P9): the gender fallback, the held tool's skin step, the identity text -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S7pCharacterExportRules.cs" Link="se\S7pCharacterExportRules.cs" />
+    <!-- S7p-gameplay (P12 depth hold, P13 yaw lock and camera axes, P14 export read debt) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\S7pGameplayRules.cs" Link="se\S7pGameplayRules.cs" />
+    <!-- S7t-look-match (T5): the look-match rules (target table, band weight, gate, blend, de.s7t look syntax; DevChannel needs the usage) -->
+    <Compile Include="..\..\src\DeepEngineers.SE\LookMatchRules.cs" Link="se\LookMatchRules.cs" />
+    <!-- S4 (terrain): the game-independent parts of the SE terrain plugin: the provider core (flags, detectOnly, writes,
+ Intersect, Close, mutant cell, ReadRange stats, the N3 self-check), the gate decision table, lattice, fail-safe
+ state, guard counters, mutants, /de terrain syntax, JSONL rows and the A-T1 ray plan -->
+    <Compile Include="..\..\src\DeepEngineers.SE\Terrain\S4Mutants.cs" Link="se\Terrain\S4Mutants.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\Terrain\ProviderCore.cs" Link="se\Terrain\ProviderCore.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\Terrain\TerrainLogic.cs" Link="se\Terrain\TerrainLogic.cs" />
+    <Compile Include="..\..\src\DeepEngineers.SE\Terrain\S4Logic.cs" Link="se\Terrain\S4Logic.cs" />
+  </ItemGroup>
+
+  <!-- S4: the VRage-free Terrain core, linked as the plugin links it -->
+  <ItemGroup>
+    <Compile Include="..\..\src\DeepEngineers.Terrain\**\*.cs" Exclude="..\..\src\DeepEngineers.Terrain\obj\**;..\..\src\DeepEngineers.Terrain\bin\**" LinkBase="terrain" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- S4 core tests (offline; no game is launched): the octree reader/sampler of src/DeepEngineers.Terrain against
+ synthetic batch files and against the user's CompiledOctreesCache, read in place and read-only (tests are
+ Inconclusive with a clear message when the install is absent). S4.A-T0 (C# vs tools/sn-octrees/sn_octree_batch.py
+ on 10 batches, mutants S4.M1a-d red), S4.A-T0b (synthetic plane through the tile sampler, S4.M6 red), the core
+ part of S4.N3 (classification, line walks, curvature bound, allocation-free reads), the source manifest.
+ Derived data stays outside the repository (DEEPENG_AT0_DIR, default %LOCALAPPDATA%\DeepEngineers\s4\at0); only
+ tests/out/s4/at0/at0-results.json is written inside it. Overrides: DEEPENG_SUBNAUTICA, DEEPENG_PYTHON.
+ Run: dotnet test tests/DeepEngineers.Terrain.Tests -c Release -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <AssemblyName>DeepEngineers.Terrain.Tests</AssemblyName>
+    <RootNamespace>DeepEngineers.Terrain.Tests</RootNamespace>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)..\DeepEngineers.Wire.Tests\wire.runsettings</RunSettingsFilePath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.6.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+    <ProjectReference Include="..\..\src\DeepEngineers.Terrain\DeepEngineers.Terrain.csproj" />
+  </ItemGroup>
+</Project>

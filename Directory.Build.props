@@ -1,0 +1,20 @@
+<Project>
+  <!-- Machine-specific game locations. Override on another machine with environment variables
+ DEEPENG_SE_BIN64 and DEEPENG_SUBNAUTICA, or edit the defaults below. -->
+  <PropertyGroup>
+    <SEBin64 Condition="'$(SEBin64)' == '' and '$(DEEPENG_SE_BIN64)' != ''">$(DEEPENG_SE_BIN64)</SEBin64>
+    <SEBin64 Condition="'$(SEBin64)' == ''">C:\Program Files (x86)\Steam\steamapps\common\SpaceEngineers\Bin64</SEBin64>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == '' and '$(DEEPENG_SUBNAUTICA)' != ''">$(DEEPENG_SUBNAUTICA)</SubnauticaDir>
+    <SubnauticaDir Condition="'$(SubnauticaDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Subnautica</SubnauticaDir>
+    <SubnauticaManaged>$(SubnauticaDir)\Subnautica_Data\Managed</SubnauticaManaged>
+    <BepInExCore>$(SubnauticaDir)\BepInEx\core</BepInExCore>
+
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+</Project>

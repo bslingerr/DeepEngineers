@@ -1,0 +1,45 @@
+# Never commit game files, extracted assets or decompiled code
+decomp/
+*-decomp/
+assets-private/
+*.mwm
+*.dds
+*.assets
+*.resS
+Assembly-CSharp*.dll
+Sandbox.*.dll
+VRage*.dll
+SpaceEngineers.Game.dll
+
+# Downloaded third-party tools and loaders (never commit)
+third_party/
+
+# Build outputs
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Logs and captures
+*.log
+captures/
+# S5 stream recordings (derived data; they live in %LOCALAPPDATA%\DeepEngineers\recordings, never in the repo)
+*.derec
+recordings/
+
+# Secrets
+.env
+*.key
+
+# Test outputs (generated WM-1 files, stand-in and cross-test logs) and vstest result folders
+tests/out/
+TestResults/
+
+# Generated: pinned downloads, the release staging, the scenario world copies
+out/

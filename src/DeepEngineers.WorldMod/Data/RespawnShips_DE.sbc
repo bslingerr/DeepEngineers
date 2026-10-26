@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--
+ (prefab RespawnPlanetPod, referenced by name, never copied), offered on planet DE_4546B only. SE drops a planet
+ pod at a random place on the planet's solid surface, which under our sea is the seabed; the SE plugin's lifepod rule
+ moves this pod to the surface above the Safe Shallows the moment its pilot appears (RespawnRule.cs). The prefab is
+ our own definition (Data/Prefabs/DE_Lifepod.sbc); the icon is a path into the game's own textures, not a copy. -->
+  <RespawnShips>
+    <Ship>
+      <Id>
+        <TypeId>RespawnShipDefinition</TypeId>
+        <SubtypeId>DE_Lifepod</SubtypeId>
+      </Id>
+      <DisplayName>lifepod</DisplayName>
+      <Icon>Textures\GUI\Icons\RespawnShips\RespawnPlanetPod.png</Icon>
+      <CooldownSeconds>300</CooldownSeconds>
+      <Prefab>RespawnPlanetPod</Prefab>
+      <UseForSpace>false</UseForSpace>
+      <UseForPlanetsWithAtmosphere>true</UseForPlanetsWithAtmosphere>
+      <UseForPlanetsWithoutAtmosphere>false</UseForPlanetsWithoutAtmosphere>
+      <MinimalAirDensity>0.5</MinimalAirDensity>
+      <PlanetDeployAltitude>2000</PlanetDeployAltitude>
+      <InitialLinearVelocity x="0" y="-95" z="0" />
+      <InitialAngularVelocity x="0" y="0.4" z="0" />
+      <PlanetTypes>
+        <PlanetType>DE_4546B</PlanetType>
+      </PlanetTypes>
+      <SpawnWithDefaultItems>true</SpawnWithDefaultItems>
+      <HelpTextLocalizationId>RespawnScreeenHelpTextSpawn</HelpTextLocalizationId>
+    </Ship>
+    <!-- SE's own atmosphere respawn ship (the Planetary Rover; the legacy planet pod is commented out in the game's RespawnShips.sbc)
+ redefined with the same values plus a whitelist of the game's own atmosphere planets, so that on DE_4546B the 4546B lifepod
+ Side effect: on a planet from
+ another mod the rover is not offered either. -->
+    <Ship>
+      <Id>
+        <TypeId>RespawnShipDefinition</TypeId>
+        <SubtypeId>RespawnRover</SubtypeId>
+      </Id>
+      <DisplayName>DisplayName_PlanetaryLander</DisplayName>
+      <Icon>Textures\GUI\Icons\RespawnShips\RespawnRover.png</Icon>
+      <CooldownSeconds>900</CooldownSeconds>
+      <Prefab>RespawnRover</Prefab>
+      <UseForSpace>false</UseForSpace>
+      <UseForPlanetsWithAtmosphere>true</UseForPlanetsWithAtmosphere>
+      <UseForPlanetsWithoutAtmosphere>false</UseForPlanetsWithoutAtmosphere>
+      <PlanetDeployAltitude>1500</PlanetDeployAltitude>
+      <MinimalAirDensity>0.9</MinimalAirDensity>
+      <InitialLinearVelocity x="0" y="-95" z="0" />
+      <InitialAngularVelocity x="0" y="0.4" z="0" />
+      <PlanetTypes>
+        <PlanetType>EarthLike</PlanetType>
+        <PlanetType>Mars</PlanetType>
+        <PlanetType>Alien</PlanetType>
+        <PlanetType>Pertam</PlanetType>
+      </PlanetTypes>
+      <HelpTextLocalizationId>Description_RespawnRover</HelpTextLocalizationId>
+    </Ship>
+  </RespawnShips>
+</Definitions>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ DeepEngineers.World: S15 part B (docs/S15-BRIEF.md "B"; CONTRACT 5.4 "S15 conventions", format water.material): the sea of
+ DE_4546B drawn with our own water material. The texture is ours, generated (tools/s15/gen_water_texture.py: a tileable
+ value-noise field around the measured mean (110, 156, 184) sRGB, 256 x 256 BGRA8 with its mips; no game file copied); the
+ other values are those of the Water Mod 3.23's own JWater2 surface (its TransparentMaterials. so only the colour changes. The Water Mod draws a planet's sea with the material named by its
+ WaterSettings.Texture.
+ Fields: MyObjectBuilder_TransparentMaterialDefinition (VRage.Game); the root MyObjectBuilder_Definitions.TransparentMaterials.
+ Checked by: python -I tools/worldmod/check_planet.py (s15.* rows) and SE's own serializer (WorldMod.Tests).
+-->
+<Definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TransparentMaterials>
+    <TransparentMaterial>
+      <Id>
+        <TypeId>TransparentMaterialDefinition</TypeId>
+        <SubtypeId>DE_4546B_Water</SubtypeId>
+      </Id>
+      <Texture>Textures\DE_4546B_Water.dds</Texture>
+      <AlphaMistingEnable>false</AlphaMistingEnable>
+      <AlphaSaturation>1</AlphaSaturation>
+      <CanBeAffectedByOtherLights>false</CanBeAffectedByOtherLights>
+      <SoftParticleDistanceScale>5</SoftParticleDistanceScale>
+      <UseAtlas>false</UseAtlas>
+      <IsFlareOccluder>true</IsFlareOccluder>
+      <Reflectivity>0</Reflectivity>
+    </TransparentMaterial>
+    <!-- S15 (run 20261024-054404): the far sea, mean (62, 96, 122); the S15 plugin swaps it in above 20 km and back below 15 km
+ (the Water Mod has one surface material per planet and no distance term), the same values otherwise -->
+    <TransparentMaterial>
+      <Id>
+        <TypeId>TransparentMaterialDefinition</TypeId>
+        <SubtypeId>DE_4546B_WaterFar</SubtypeId>
+      </Id>
+      <Texture>Textures\DE_4546B_WaterFar.dds</Texture>
+      <AlphaMistingEnable>false</AlphaMistingEnable>
+      <AlphaSaturation>1</AlphaSaturation>
+      <CanBeAffectedByOtherLights>false</CanBeAffectedByOtherLights>
+      <SoftParticleDistanceScale>5</SoftParticleDistanceScale>
+      <UseAtlas>false</UseAtlas>
+      <IsFlareOccluder>true</IsFlareOccluder>
+      <Reflectivity>0</Reflectivity>
+    </TransparentMaterial>
+  </TransparentMaterials>
+</Definitions>

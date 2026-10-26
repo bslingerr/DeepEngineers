@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- S0.N4 cross-language check, C# half (ROADMAP S0 oracle). Driven by tests/wire/cross_test.py. Modes:
+ layout OUT.json C# layout table, struct offsets/sizes and canonical text (S0.N1 cross)
+ open NAME SECONDS [attach-se] open a Python-created section, validate, read back, attach as SE
+ create NAME SECONDS [traffic N] create by the creator rules, then exchange heartbeats, seqlock
+ records and ring traffic with the Python side (SN role)
+ Test sections use private names (Local\DeepEngineers_xtest_*), never the real one. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>DeepEngineers.Wire.CrossTest</RootNamespace>
+    <AssemblyName>DeepEngineers.Wire.CrossTest</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <ProjectReference Include="..\..\src\DeepEngineers.Wire\DeepEngineers.Wire.csproj" />
+  </ItemGroup>
+</Project>

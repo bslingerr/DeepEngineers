@@ -1,0 +1,11 @@
+# typeId	subtypeId	edgeType('-' none)	class	tier
+MyObjectBuilder_CubeBlock	LargeBlockArmorBlock	Light	1	0
+CubeBlock	SmallBlockArmorSlope	Light	1	0
+MyObjectBuilder_CubeBlock	LargeHeavyBlockArmorBlock	Heavy	2	0
+MyObjectBuilder_CubeBlock	LargeBlockConduitCorner	Light	3	0
+MyObjectBuilder_Thrust	SmallBlockSmallThrust	Light	3	0
+MyObjectBuilder_CubeBlock	LargeArmorPanelLight	-	1	0
+MyObjectBuilder_Door	LargeBlockGate	Heavy	2	0
+MyObjectBuilder_CubeBlock	DE_PressureHullMk2Large	Light	3	2
+MyObjectBuilder_CubeBlock	smallblockarmorcorner	-	1	0
+MyObjectBuilder_Cockpit	SmallBlockCockpit	-	3	0

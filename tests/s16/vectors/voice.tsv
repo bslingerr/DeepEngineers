@@ -1,0 +1,8 @@
+# sequence	ms	key	depth	limit	played (only event rows)
+cross	4100	7	300.5	300.0	1
+cross	24500	7	330.0	300.0	1
+cross	44500	7	330.0	300.0	1
+cross	64500	7	330.0	300.0	1
+cross	84100	7	300.5	300.0	0
+cross	105000	7	330.0	300.0	1
+cross	304100	9	300.5	300.0	1

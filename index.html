@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DeepEngineers</title>
+<meta name="description" content="Space Engineers x Subnautica: dive from your Space Engineers ship into Subnautica's ocean. Requirements measured on real PCs, install steps.">
+<!-- S10 part 1 (docs/S10-BRIEF.md): the GitHub page scaffold. Static, no build step, no asset of either game.
+     Publish: GitHub Pages from this folder (copy it to the repository's docs/ or a gh-pages branch; the owner decides).
+     The Requirements table is rendered from data/requirements.json, which tests/s10/analyze_s10.py writes
+     (launcher.py s10 --part perf --publish-site, or s10 --latest --machine laptop --publish-site). -->
+<style>
+:root {
+  --bg: #f7f9fb; --fg: #13202b; --muted: #5a6b7a; --card: #ffffff; --line: #d9e1e8; --accent: #0b6e8a; --ok: #1d7a46; --warn: #a15c00;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0b1418; --fg: #e3edf2; --muted: #93a7b3; --card: #12212a; --line: #22363f; --accent: #4cc3e0; --ok: #5fd08f; --warn: #f0b35a; }
+}
+:root[data-theme="dark"] { --bg: #0b1418; --fg: #e3edf2; --muted: #93a7b3; --card: #12212a; --line: #22363f; --accent: #4cc3e0; --ok: #5fd08f; --warn: #f0b35a; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+header { padding: 40px 0 16px; border-bottom: 1px solid var(--line); }
+h1 { margin: 0 0 6px; font-size: 2rem; letter-spacing: -0.01em; }
+h2 { margin: 40px 0 12px; font-size: 1.35rem; }
+h3 { margin: 24px 0 8px; font-size: 1.05rem; }
+p.lead { margin: 0; color: var(--muted); max-width: 70ch; }
+nav { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 16px; }
+nav a, a { color: var(--accent); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin: 12px 0; }
+.scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: 0.95rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+td.num { text-align: right; white-space: nowrap; }
+.ok { color: var(--ok); } .warn { color: var(--warn); } .muted { color: var(--muted); }
+ol li, ul li { margin: 6px 0; }
+code { background: var(--line); padding: 1px 5px; border-radius: 4px; font-size: 0.9em; }
+footer { margin-top: 48px; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>DeepEngineers</h1>
+  <p class="lead">A Space Engineers &times; Subnautica mashup. Space Engineers runs the game: your character, survival, building and
+  ship physics. When you dive into the ocean planet, the picture becomes Subnautica's: its water, biomes, light and creatures
+  around your Space Engineers ship. Both games must be owned; nothing of either game is shipped.</p>
+  <nav><a href="#requirements">Requirements</a><a href="#install">Install</a><a href="#about">About</a></nav>
+</header>
+
+<section id="requirements">
+  <h2>Requirements</h2>
+  <p>Both games run at the same time, so the numbers below are measured on real PCs with the two games running together,
+  not estimated. Each row is one scene of the scripted measurement: the spawn under water, a 10,000-block ship pasted
+  and looked at, and a 30 km flight across the planet.</p>
+  <div class="card">
+    <h3>Minimum and recommended</h3>
+    <table>
+      <tr><th>Windows</th><td>Windows 10 or 11, 64-bit</td></tr>
+      <tr><th>Memory</th><td>16 GB; 32 GB leaves room for large ships and other programs</td></tr>
+      <tr><th>CPU</th><td>a recent 6-core or better (tested on 8 cores)</td></tr>
+      <tr><th>Graphics</th><td>a GPU and driver that honour per-pixel window transparency (the normal case); integrated
+        GPUs run with a 30 fps cap on Subnautica</td></tr>
+      <tr><th>Games</th><td>Space Engineers 1.210.014 and Subnautica 1.22.83031 on Steam</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Measured</h3>
+    <div id="measured" class="scroll"><p class="muted">Loading the measurements&hellip;</p></div>
+    <p id="measured-note" class="muted"></p>
+  </div>
+  <div class="card">
+    <h3>Pass marks</h3>
+    <ul id="marks"></ul>
+  </div>
+</section>
+
+<section id="install">
+  <h2>Install</h2>
+  <p>The release folder carries the full README with every option and the troubleshooting section. In short:</p>
+  <ol>
+    <li>Own <b>Space Engineers</b> and <b>Subnautica</b> on Steam; install <b>Python 3.10 or newer</b> from python.org.</li>
+    <li>In Space Engineers: turn on <b>Experimental mode</b> (Options &gt; Game) and set the window mode to
+      <b>Fullscreen window</b> (Options &gt; Display).</li>
+    <li>In Steam, for both games: Properties &gt; Updates &gt; <b>Only update this game when I launch it</b> (DeepEngineers is
+      pinned to the exact game builds).</li>
+    <li>Subscribe to the Space Engineers Workshop items <b>Water Mod</b> (2200451495) and <b>Text HUD API</b> (758597413);
+      start Space Engineers once so they download, then close it.</li>
+    <li>In Subnautica, make a <b>Freedom</b> save (New Game &gt; Freedom, save in the lifepod, quit).</li>
+    <li>Unzip the DeepEngineers folder anywhere outside the game folders and run <code>Install.cmd</code>. It checks
+      everything, downloads the two loaders (Pulsar for Space Engineers, BepInEx for Subnautica) with their checksums,
+      installs the plugins, the planet mod and a ready world called <b>DeepEngineers</b>, and records every file it adds
+      so <code>Uninstall.cmd</code> can undo exactly that.</li>
+    <li>Play with <code>Play.cmd</code>.</li>
+  </ol>
+</section>
+
+<section id="about">
+  <h2>About</h2>
+  <p>DeepEngineers is a fan project. It ships only its own code and documents: no file of either game, no extracted asset,
+  no decompiled code. Everything Subnautica shows is read from your own install while you play. Built with AI agents
+  (Claude Code).</p>
+</section>
+
+<footer>Requirements data: <code>data/requirements.json</code>, written by the project's measurement analyzer from the
+plugins' own per-second rows. <span id="generated"></span></footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var SCENES = [["spawn", "Spawn, under water"], ["paste", "10,000-block ship"], ["flight", "30 km flight"]];
+  var MACHINES = [["desktop", "Desktop"], ["laptop", "Laptop (Radeon 780M)"]];
+  function n(v, d) { return (v === null || v === undefined || isNaN(v)) ? "&ndash;" : Number(v).toFixed(d === undefined ? 0 : d); }
+  function sec(v) { return (v === null || v === undefined || isNaN(v)) ? "&ndash;" : n(v / 1000, 1); }
+  function esc(s) { return String(s === undefined || s === null ? "" : s).replace(/[&<>"]/g, function (c) { return {"&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;"}[c]; }); }
+  function fpsCell(v, mark) {
+    if (v === null || v === undefined) return "<td class=\"num muted\">&ndash;</td>";
+    var cls = mark ? (v >= mark ? "ok" : "warn") : "";
+    return "<td class=\"num " + cls + "\">" + n(v) + "</td>";
+  }
+  function render(doc) {
+    var marks = doc.passMarks || {};
+    var ul = document.getElementById("marks");
+    Object.keys(marks).forEach(function (k) { var li = document.createElement("li"); li.textContent = marks[k].text || k; ul.appendChild(li); });
+    var machines = doc.machines || {};
+    var html = "<table><thead><tr><th>PC</th><th>Scene</th><th>Subnautica fps</th><th>SE fps</th><th>Subnautica frame p95 (ms)</th>" +
+               "<th>Memory (MB)</th><th>Paste: select / place / shown (s)</th></tr></thead><tbody>";
+    var rows = 0;
+    MACHINES.forEach(function (m) {
+      var e = machines[m[0]];
+      if (!e) return;
+      SCENES.forEach(function (s) {
+        var sc = (e.scenes || {})[s[0]];
+        if (!sc) return;
+        var mark = s[0] === "paste" && marks.pasteSnFps ? marks.pasteSnFps[m[0]] : null;
+        var paste = s[0] === "paste" ? sec(sc.selectMs) + " / " + sec(sc.placeMs) + " / " + sec(sc.spawnMs) : "";
+        html += "<tr><td>" + esc(m[1]) + (e.spec ? "<br><span class=\"muted\">" + esc(e.spec) + "</span>" : "") + "<br><span class=\"muted\">" + esc(e.measured) + "</span></td>" +
+                "<td>" + esc(s[1]) + "</td>" + fpsCell(sc.snFps, mark) + fpsCell(sc.seFps, null) +
+                "<td class=\"num\">" + n(sc.snFrameP95Ms, 1) + "</td><td class=\"num\">" + n(sc.memoryMB) + "</td><td class=\"num\">" + paste + "</td></tr>";
+        rows++;
+      });
+      if (e.loadMs && e.loadMs.TOTAL) {
+        html += "<tr><td>" + esc(m[1]) + "</td><td>World load to the first dive picture</td><td class=\"num\" colspan=\"5\">" + sec(e.loadMs.TOTAL) + " s</td></tr>";
+      }
+    });
+    html += "</tbody></table>";
+    document.getElementById("measured").innerHTML = rows ? html : "<p class=\"muted\">No measurement published yet: the first runs are on their way.</p>";
+    document.getElementById("measured-note").textContent = doc.note || "";
+    if (doc.generated) document.getElementById("generated").textContent = "Updated " + doc.generated + ".";
+  }
+  fetch("data/requirements.json", {cache: "no-store"})
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(render)
+    .catch(function () {
+      document.getElementById("measured").innerHTML = "<p class=\"muted\">The measurements could not be loaded (open this page through a web server or GitHub Pages, not as a file).</p>";
+    });
+})();
+</script>
+</body>
+</html>
